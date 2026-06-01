@@ -7,6 +7,12 @@
 /.angular/
 .angular/
 
+# vscode settings
+.vscode/
+.editorconfig
+.eslintrc.json
+
+
 # Node modules and dependency files
 /node_modules/
 /package-lock.json
