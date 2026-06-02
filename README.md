@@ -11,7 +11,14 @@ https://buttercms.com/blog/headless-commerce-your-shopify-store-built-with-angul
 * compra
 * carga de productos
 
-## shopify
+### shopify links
+
+stores:
+https://dev.shopify.com/dashboard/220771485/stores 
+
+api:
+https://admin.shopify.com/store/superarigatodev/headless/253050/storefront_api
+
 
 ## Libs
 
@@ -20,7 +27,6 @@ https://buttercms.com/blog/headless-commerce-your-shopify-store-built-with-angul
 * shopify api
 
 #### dev
-https://dev.shopify.com/dashboard/220771485/stores 
 
 ## TODO
 

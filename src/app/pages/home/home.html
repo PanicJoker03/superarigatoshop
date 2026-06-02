@@ -1,1 +1,9 @@
-<p>home works!</p>
+<div class="product-grid">
+@for (product of products(); track product.id) {
+    <app-product-grid-item
+      [imageUrl]="product.imageUrl"
+      [title]="product.title"
+      [price]="product.price">
+    </app-product-grid-item>
+}
+</div>    

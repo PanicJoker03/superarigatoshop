@@ -18,6 +18,9 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
 
     provideApollo(() => {
+      console.log('Initializing Apollo Client with Shopify Storefront API');
+      console.log('Shopify Store URL:', environment.shopify.storeUrl);
+      console.log('Shopify Storefront Token:', environment.shopify.storeFrontToken);
       const httpLink = inject(HttpLink);
       const uri = `${environment.shopify.storeUrl}/api/2025-01/graphql.json`;
       const authLink = setContext((_, { headers }) => ({

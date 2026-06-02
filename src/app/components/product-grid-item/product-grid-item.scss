@@ -1,0 +1,15 @@
+.product-grid-item {
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 1 / 1;
+}
+
+.product-grid-item img {
+   width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+}
+
+:host {
+  display: block;
+}
