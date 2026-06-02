@@ -139,7 +139,7 @@ export class ShopifyService {
     return this.apollo.query({
       query: collectionHandle ? GET_PRODUCTS_BY_TAG : GET_PRODUCTS,
       variables: {
-        tag: collectionHandle ? `collection:${collectionHandle}` : undefined,
+        tag: collectionHandle ? `${collectionHandle}` : undefined,
       },
     }).pipe(
       map((result: any) => {

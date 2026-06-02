@@ -45,7 +45,7 @@ export class Home {
           collectionHandle = 'Mouse Pad';
           break;
         case 'tars':
-          collectionHandle = 'Tasas';
+          collectionHandle = 'Tasa';
           break;
         case 'plush':
           collectionHandle = 'Peluches';

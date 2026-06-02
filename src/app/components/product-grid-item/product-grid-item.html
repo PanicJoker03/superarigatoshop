@@ -1,12 +1,14 @@
 <mat-card class="shopy-card product-grid-item" appearance="outlined">
-  <a 
-    routerLink="/pages/product-detail"
-    [queryParams]="{ id: productId }"
-    >
-    <img mat-card-image [src]="imageUrl" alt="{{ title }}" (click)="onClick()"/>
-  </a>
   <mat-card-content>
-    <h2>{{ title }}</h2>
+    <a 
+      routerLink="/pages/product-detail"
+      [queryParams]="{ id: productId }"
+      >
+      <img mat-card-image [src]="imageUrl" alt="{{ title }}" (click)="onClick()"/>
+    </a>
+    <h2><a routerLink="/pages/product-detail"
+    [queryParams]="{ id: productId }"
+    >{{ title }}</a></h2>
     <p>{{ price }}</p>
   </mat-card-content>
 </mat-card>

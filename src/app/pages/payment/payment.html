@@ -1,1 +1,30 @@
-<p>payment works!</p>
+<div class="checkout-payment-wrapper">
+    <div class="checkout-payment-method">
+        <mat-card appearance="outlined">
+        </mat-card>
+    </div>
+    <div class="separator"></div>
+    <div class="checkout-payment-info">
+        <mat-card class="summary-card" appearance="outlined">
+            <mat-card-header>
+                <mat-card-subtitle>Total</mat-card-subtitle>
+                <mat-card-title>$</mat-card-title>
+            </mat-card-header>
+            <mat-nav-list>
+                @for(line of cartLines; track line) {
+                <a mat-list-item>
+                    <div class="matListItemIcon" matListItemIcon>
+                        <span class="line-quantity">1</span>
+                    </div>
+                    <span matListItemTitle>{{line}}</span>
+                    <div class="matListItemMeta" matListItemMeta>
+                        {{0.00}}
+                    </div>
+                </a>
+                }
+            </mat-nav-list>
+        </mat-card>
+        <button mat-raised-button style="background-color: var(--arigato-red); color: white;" (click)="pay()">Seguir comprando</button>
+        <button mat-raised-button style="background-color: var(--arigato-red); color: white;" (click)="pay()">Continuar</button>
+    </div>
+</div>

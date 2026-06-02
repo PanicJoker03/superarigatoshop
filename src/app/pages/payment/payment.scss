@@ -1,0 +1,91 @@
+.checkout-payment-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 20px;
+  justify-content: center;
+  min-height: 60vh;
+}
+
+.checkout-payment-method {
+    flex: 1;
+}
+
+.checkout-payment-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.checkout-payment-info > * {
+    margin-bottom: 1rem;
+    // flex: 1;
+}
+
+mat-button-toggle-group > * {
+    float: right;
+}
+
+.separator {
+  width: 1px;
+  background-color: #000000;
+  height: 100%;
+  width: 1px;
+  height: 50vh;
+  margin-top: 3rem;
+}
+
+.btn-quantity {
+    flex-grow: 1;
+}
+
+.checkout-payment-info button {
+    flex-grow: 1;
+}
+
+mat-button-toggle-group {
+    border-color: var(--arigato-red);
+    border-width: 2px;
+}
+
+mat-button-toggle {
+    border-color: var(--arigato-red);
+    color: var(--arigato-red);
+}
+
+mat-card.summary-card {
+    display: flex;
+    align-items: center;
+    background-color: var(--arigato-yellow);
+}
+
+mat-card.summary-card mat-card-header * {
+    color : var(--arigato-white)
+}
+
+mat-card.summary-card mat-nav-list a {
+    background-color: var(--arigato-white);
+    border-style: solid;
+    border-color: var(--arigato-red);
+    margin-bottom: 0.5rem;
+    color: var(--arigato-red);
+}
+
+mat-card.summary-card mat-nav-list .matListItemIcon {
+    background-color: var(--arigato-blue);
+    text-align: center;
+    color: var(--arigato-white);
+    border-radius: 50%;
+}
+
+mat-card.summary-card mat-nav-list span {
+    color: var(--arigato-red);
+}
+
+mat-card.summary-card mat-nav-list span.line-quantity {
+    font-size: small;
+    position: relative;
+    top: -0.1rem;
+    color: var(--arigato-white);
+}

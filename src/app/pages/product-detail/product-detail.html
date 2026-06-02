@@ -1,11 +1,29 @@
 <div class="product-detail-wrapper">
-    <div class="product-detail-image">
-        <img [src]="123" alt="{{ 123 }}" />
-    </div>
-    <div class="separator"></div>
-    <div class="product-detail-info">
-        <h2>${{ 123 }}</h2>
-        <p>{{ 123 }}</p>
-        <p>{{ 123 }}</p>
-    </div>
+    @if (product() === null) {
+        <p>Product not found.</p>
+    } @else {
+        <div class="product-detail-image">
+            <mat-card appearance="outlined">
+                <mat-card-header>
+                    <mat-card-title>{{ product()?.title }}</mat-card-title>
+                    <mat-card-subtitle>{{ product()?.description }}</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image [src]="product()?.imageUrl" alt="{{ product()?.title }}" />
+            </mat-card>
+        </div>
+        <div class="separator"></div>
+        <div class="product-detail-info">
+            <h2>${{ product()?.price }}</h2>
+            <h2>Entrega en Mercado Y Griega</h2>
+            <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=300&amp;height=196&amp;hl=en&amp;q=tianguis juguetes y griega&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://embed-googlemap.com">google map embed html</a></div><style>.mapouter{position:relative;text-align:right;width:100%;height:196px;}.gmap_canvas {overflow:hidden;background:none!important;width:100%;height:196px;}.gmap_iframe {height:196px!important;}</style></div>
+            <mat-button-toggle-group [hideSingleSelectionIndicator]="true" name="fontStyle" aria-label="Font Style">
+                <mat-button-toggle (click)="increaseQuantity()">+</mat-button-toggle>
+                <mat-button-toggle (click)="increaseQuantity()" class="btn-quantity">{{ quantity() }}</mat-button-toggle>
+                <mat-button-toggle class="btn-quantity" disabled>Pza</mat-button-toggle>
+                <mat-button-toggle (click)="decreaseQuantity()">-</mat-button-toggle>
+            </mat-button-toggle-group>
+            <button mat-raised-button style="background-color: var(--arigato-red); color: white;" (click)="buy()">Comprar</button>
+            <!-- < -->
+        </div>
+    }
 </div>
