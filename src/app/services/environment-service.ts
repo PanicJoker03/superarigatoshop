@@ -5,10 +5,16 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class EnvironmentService {
-  // This service can be used to manage environment variables and configurations as necessary.
+  // This service exposes Shopify storefront configuration values used by commerce services.
   public get storeFrontToken(): string {
-    //todo: create apollo client and use it to connect with the Shopify API using the store front token from the environment variables.
-    // the service is called shopifyservice
     return environment.shopify.storeFrontToken;
+  }
+
+  public get storeUrl(): string {
+    return environment.shopify.storeUrl;
+  }
+
+  public get apiVersion(): string {
+    return environment.shopify.apiVersion;
   }
 }

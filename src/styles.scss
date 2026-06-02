@@ -5,6 +5,13 @@
 // custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
 
+:root {
+  --arigato-red: #E52020;
+  --arigato-blue: #3C9FDD;
+  --arigato-orange: #FF8400;
+  --arigato-yellow: #FFD000;
+}
+
 html {
   height: 100%;
   @include mat.theme(

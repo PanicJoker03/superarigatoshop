@@ -1,1 +1,12 @@
-<p>navigation works!</p>
+<nav class="shopy-navigation">
+    <div class="shopy-navigation-wrapper">
+        <ul>
+            <li><a routerLink="/">Inicio</a></li>
+            <li><a routerLink="/" [queryParams]="{ collectionHandle: 'mouse-pads' }">Mouse Pads</a></li>
+            <li><a routerLink="/" [queryParams]="{ collectionHandle: 'cup-holder' }">Portavasos</a></li>
+            <li><a routerLink="/" [queryParams]="{ collectionHandle: 'tars' }">Tasas</a></li>
+            <li><a routerLink="/" [queryParams]="{ collectionHandle: 'plush' }">Peluches</a></li>
+            <!-- <li><a routerLink="?collectionHandle=about">About</a></li> -->
+        </ul>
+    </div>
+</nav>

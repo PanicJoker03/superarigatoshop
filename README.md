@@ -34,3 +34,4 @@ https://admin.shopify.com/store/superarigatodev/headless/253050/storefront_api
 ## TODO
 
 * create mocks
+* fallback image 404

@@ -1,0 +1,26 @@
+.shopy-navigation {
+    background-color: var(--arigato-blue);
+    color: white;
+    padding: 0.5rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Paytone One', sans-serif;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+li a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+li a:hover {
+    color: var(--arigato-yellow);
+    text-decoration: underline;
+}

@@ -8,6 +8,7 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
   :host {
     --bright-blue: oklch(51.01% 0.274 263.83);
     --electric-violet: oklch(53.18% 0.28 296.97);
@@ -341,4 +342,7 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 <app-header></app-header>
-<router-outlet></router-outlet>
+<app-navigation></app-navigation>
+<div class="page-body-wrapper">
+  <router-outlet></router-outlet>
+</div>

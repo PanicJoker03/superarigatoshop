@@ -1,0 +1,17 @@
+.product-detail-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 20px;
+  justify-content: center;
+  min-height: 60vh;
+}
+
+.separator {
+  width: 1px;
+  background-color: #000000;
+  height: 100%;
+  width: 1px;
+  height: 50vh;
+}
