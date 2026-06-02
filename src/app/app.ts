@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ShopifyService } from './commerce/shopify-service';
 import { Header } from "./layout/header/header";
+import { ChatbotService } from './components/chatbot/chatbot-service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,9 @@ import { Header } from "./layout/header/header";
 })
 export class App {
   protected readonly title = signal('superarigatoshop');
-  constructor(private shopifyService: ShopifyService) {
+  constructor(
+    private shopifyService: ShopifyService,
+    private chatbot:ChatbotService) {
   }
 
   ngOnInit() {
@@ -20,5 +23,11 @@ export class App {
     this.shopifyService.getProducts().subscribe((response) => {
       console.log('Products from Shopify API:', response);
     });
+    
+    console.log("loading chat");
+    this.chatbot.loadChat();
+  }
+
+  ngAfterViewInit() {
   }
 }

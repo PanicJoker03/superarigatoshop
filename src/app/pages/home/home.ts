@@ -27,4 +27,8 @@ export class Home {
     });
     console.log('Products in Home component:', this.products);
   }
+
+  ngOnInit(){
+    
+  }
 }
