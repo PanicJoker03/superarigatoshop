@@ -28,19 +28,23 @@ export class Payment {
   plaftormId = inject(PLATFORM_ID)
 
   constructor(){
-    afterNextRender(() => {
-    this.cartId = localStorage.getItem('cartId') ?? '';
-    console.log("stored cartId:", this.cartId);
-  });
+    if (isPlatformBrowser(this.plaftormId)) {
+      this.cartId = localStorage.getItem('cartId') ?? '';
+      console.log("stored cartId:", this.cartId);
+    }
   }
 
   ngAfterViewInit(){  
+    if (!this.cartId) {
+      console.warn('No cartId available, skipping loadCart.');
+      return;
+    }
+
     this.cart.loadCart(this.cartId);
     this.cart.cart$.pipe(
       filter(cart => !!cart),
-      // filter(cart => !!cart.id),
-      take(10)).subscribe((cart)=>{
-      console.log("cart loaded", cart);
+      ).subscribe((cart)=>{
+        this.cartLines.set(cart.lines);
     });
 
     this.cart.cartLines$.pipe(filter(lines => !!lines),take(1)).subscribe((lines)=>{
