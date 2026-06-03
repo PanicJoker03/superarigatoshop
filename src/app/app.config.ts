@@ -9,6 +9,10 @@ import { HttpLink } from 'apollo-angular/http';
 import { InMemoryCache, from } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { environment } from '../environments/environment';
+import { provideStore } from '@ngrx/store';
+import { provideEffects } from '@ngrx/effects';
+import { cartReducer } from './store/cart/cart.reducer';
+import { CartEffects } from './store/cart/cart.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,6 +20,10 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
     provideHttpClient(),
+    provideStore({
+      cart: cartReducer,
+    }),
+    provideEffects([CartEffects]),
 
     provideApollo(() => {
       console.log('Initializing Apollo Client with Shopify Storefront API');
