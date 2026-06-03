@@ -1,0 +1,48 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "SuperArigato API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://superarigatobot-middleware.onrender.com"
+    }
+  ],
+  "paths": {
+    "/product/{handle}": {
+      "get": {
+        "operationId": "getProduct",
+        "summary": "Get product availability",
+        "parameters": [
+          {
+            "name": "handle",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns an object containing product availability",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "product_availability": {
+                      "type": "string",
+                      "description": "Will be 'Yes' or 'No'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
