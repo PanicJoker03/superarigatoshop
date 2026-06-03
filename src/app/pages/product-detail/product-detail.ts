@@ -61,16 +61,24 @@ export class ProductDetail {
         return;
       }
 
-
+      //#begin# snippet to add product to card
       const cartId = localStorage.getItem('cartId');
 
       if(!cartId){
+        console.log("no cart loaded");
         this.cart.createCart(variantId, this.quantity());
       }
       else{
         this.cart.addLineToCart(cartId, variantId, this.quantity());
       }
 
+      this.cart.cartCheckoutUrl$.pipe(take(2)).subscribe((cart)=>{
+        console.log("url for payment", cart);
+        
+      });
+      //#end# snippet to add product to card
+
+      // //just for test chatgpt tell this bad
       // this.cart.cart$.pipe(take(1)).subscribe((cart)=>{
       //   if(cart?.id){
       //     console.log("cart", cart);
