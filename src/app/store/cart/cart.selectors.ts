@@ -1,5 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { CartState } from './cart.state';
+import { Cart } from '../../commerce/cart-service';
 
 export const selectCartState = createFeatureSelector<CartState>('cart');
 
@@ -20,15 +21,15 @@ export const selectCartError = createSelector(
 
 export const selectCartLines = createSelector(
   selectCart,
-  (cart) => cart?.lines || []
+  (cart: Cart | null) => cart?.lines || []
 );
 
 export const selectCartTotalQuantity = createSelector(
   selectCart,
-  (cart) => cart?.totalQuantity || 0
+  (cart: Cart | null) => cart?.totalQuantity || 0
 );
 
 export const selectCartCheckoutUrl = createSelector(
   selectCart,
-  (cart) => cart?.checkoutUrl || ''
+  (cart: Cart | null) => cart?.checkoutUrl || ''
 );
