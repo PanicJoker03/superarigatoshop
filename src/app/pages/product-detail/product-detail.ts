@@ -8,7 +8,7 @@ import { MatButtonToggle, MatButtonToggleGroup } from "@angular/material/button-
 import { MatButtonModule } from "@angular/material/button";
 import { Router } from '@angular/router';
 import { CartFacade } from '../../store/cart';
-import { take } from 'rxjs/operators';
+import { filter, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-detail',
@@ -71,19 +71,16 @@ export class ProductDetail {
       else{
         this.cart.addLineToCart(cartId, variantId, this.quantity());
       }
-
-      this.cart.cartCheckoutUrl$.pipe(take(2)).subscribe((cart)=>{
-        console.log("url for payment", cart);
-        
+      
+      //rxjs to the rescue, wait till cart available
+      this.cart.cartCheckoutUrl$.pipe(
+        filter(url => !!url),
+        take(1)
+      ).subscribe((url)=>{
+        console.log("url for payment", url);
+        window.location.href = url        
       });
       //#end# snippet to add product to card
-
-      // //just for test chatgpt tell this bad
-      // this.cart.cart$.pipe(take(1)).subscribe((cart)=>{
-      //   if(cart?.id){
-      //     console.log("cart", cart);
-      //   }
-      // })
     }
     else{
       console.error('No product selected to add to cart');

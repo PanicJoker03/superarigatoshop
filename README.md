@@ -35,3 +35,6 @@ https://admin.shopify.com/store/superarigatodev/headless/253050/storefront_api
 
 * create mocks
 * fallback image 404
+* link superarigato.com to Angular
+* link store.superarigato.com to shopify
+* change shopify theme to redirect to superarigato.com
