@@ -17,21 +17,6 @@ export class Home {
   products = signal<Product[]>([]);
 
   constructor() {
-    // //retrieve the collection handle from the route parameters
-    // const collectionHandle = this.activateRoute.snapshot.paramMap.get('collectionHandle');
-
-    // console.log('Home component initialized');
-    // // Example usage of the ShopifyService to fetch products
-    // this.shopifyService.getProducts("Mouse Pad").subscribe({
-    //   next: (products) => {
-    //     console.log('Products fetched from ShopifyService:', products);
-    //     this.products.set(products);
-    //   },
-    //   error: (error) => {
-    //     console.error('Error fetching products from ShopifyService:', error);
-    //   }
-    // });
-    // console.log('Products in Home component:', this.products);
   }
 
   ngOnInit(){
