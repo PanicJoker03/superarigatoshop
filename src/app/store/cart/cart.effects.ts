@@ -1,17 +1,27 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { CartService } from '../../commerce/cart-service';
 import * as CartActions from './cart.actions';
 
 @Injectable()
 export class CartEffects {
+    actions$ = inject(Actions);
+    cartService = inject(CartService);
+//   constructor(private actions$: Actions, private ) {}
+
   createCart$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CartActions.createCart),
       switchMap(({ variantId, quantity }) =>
         this.cartService.createCart(variantId, quantity).pipe(
+          tap((cart) => {
+            // Store cart ID in localStorage for persistence
+            if (cart.id) {
+              localStorage.setItem('cartId', cart.id);
+            }
+          }),
           map((cart) => CartActions.createCartSuccess({ cart })),
           catchError((error) =>
             of(CartActions.createCartFailure({ error: error.message }))
@@ -77,5 +87,16 @@ export class CartEffects {
     )
   );
 
-  constructor(private actions$: Actions, private cartService: CartService) {}
+  clearCart$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(CartActions.clearCart),
+        tap(() => {
+          // Remove cart ID from localStorage
+          localStorage.removeItem('cartId');
+        })
+      ),
+    { dispatch: false }
+  );
+
 }
