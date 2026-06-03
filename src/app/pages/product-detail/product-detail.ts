@@ -68,17 +68,34 @@ export class ProductDetail {
         console.log("no cart loaded");
         this.cart.createCart(variantId, this.quantity());
       }
-      else{
+      else{        
+        console.log("cart loaded");
         this.cart.addLineToCart(cartId, variantId, this.quantity());
       }
       
+      this.cart.cartLines$.pipe(take(1)).subscribe((cart:Array<{}>)=>{
+        console.log(cart);
+        //patch if empty then recreate cart 
+        let cartValid = true;
+        if(!cart) 
+          cartValid = false;
+        if(cartValid)
+          if(cart.length == 0)
+            cartValid = false;
+        if(!cartValid)
+          this.cart.createCart(variantId, this.quantity());
+      });
+
       //rxjs to the rescue, wait till cart available
       this.cart.cartCheckoutUrl$.pipe(
         filter(url => !!url),
         take(1)
       ).subscribe((url)=>{
         console.log("url for payment", url);
-        window.location.href = url        
+        this.router.navigate(['/pages/payment']).finally(()=>{
+          console.log("finally happened");
+        });
+        //window.location.href = url        
       });
       //#end# snippet to add product to card
     }

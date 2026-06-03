@@ -1,6 +1,18 @@
 <div class="checkout-payment-wrapper">
     <div class="checkout-payment-method">
-        <mat-card appearance="outlined">
+        <mat-card class="payment-options" appearance="outlined">
+            <mat-card-header>
+                <mat-card-title>Checkout</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <h3>Puedes pagar con cualquiera de los siguientes métodos de pago</h3>
+            </mat-card-content>
+                <button mat-button (click)="pay()">tarjeta</button>
+                <button mat-button (click)="pay()">shopify</button>
+            <mat-card-footer>
+                <img mat-card-image class="lock-secure" src="/img/lock_icon.png">
+                <div>Compra Segura</div>
+            </mat-card-footer>
         </mat-card>
     </div>
     <div class="separator"></div>
@@ -8,23 +20,23 @@
         <mat-card class="summary-card" appearance="outlined">
             <mat-card-header>
                 <mat-card-subtitle>Total</mat-card-subtitle>
-                <mat-card-title>$</mat-card-title>
+                <mat-card-title>$ {{ subtotal() }}</mat-card-title>
             </mat-card-header>
             <mat-nav-list>
-                @for(line of cartLines; track line) {
+                @for(line of cartLines(); track line.id) {
                 <a mat-list-item>
                     <div class="matListItemIcon" matListItemIcon>
-                        <span class="line-quantity">1</span>
+                        <span class="line-quantity">{{ line.quantity }}</span>
                     </div>
-                    <span matListItemTitle>{{line}}</span>
+                    <span matListItemTitle>{{ line.title }}</span>
                     <div class="matListItemMeta" matListItemMeta>
-                        {{0.00}}
+                        ${{ line.price }}
                     </div>
                 </a>
                 }
             </mat-nav-list>
         </mat-card>
-        <button mat-raised-button style="background-color: var(--arigato-red); color: white;" (click)="pay()">Seguir comprando</button>
+        <button mat-raised-button style="background-color: var(--arigato-red); color: white;" (click)="toHome()">Seguir comprando</button>
         <button mat-raised-button style="background-color: var(--arigato-red); color: white;" (click)="pay()">Continuar</button>
     </div>
 </div>

@@ -73,6 +73,7 @@ export class CartEffects {
     )
   );
 
+  //dangerous, fail sometimes
   getCart$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CartActions.getCart),

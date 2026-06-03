@@ -9,6 +9,7 @@ export interface CartLine {
   title: string;
   quantity: number;
   price: string;
+  subtotal: number;
   imageUrl?: string;
 }
 
@@ -254,8 +255,9 @@ export class CartService {
       const node = edge?.node || {};
       const merchandise = node.merchandise || {};
       const priceAmount = merchandise.priceV2?.amount || '0.00';
-      const currency = merchandise.priceV2?.currencyCode || 'USD';
-      const title = merchandise.title || merchandise.product?.title || 'Product';
+      const currency = merchandise.priceV2?.currencyCode || '';
+      const title = merchandise.product?.title || merchandise.title ||  'Product';
+      const subtotal = Number.parseFloat(priceAmount) * node.quantity;
       return {
         id: node.id,
         merchandiseId: merchandise.id,
@@ -263,6 +265,7 @@ export class CartService {
         quantity: node.quantity,
         price: `${priceAmount} ${currency}`,
         imageUrl: merchandise.image?.url,
+        subtotal
       };
     });
   }
