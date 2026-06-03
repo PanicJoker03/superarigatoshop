@@ -88,6 +88,7 @@ const GET_PRODUCT_DETAILS = gql`
       variants(first: 1) {
         edges {
           node {
+            id
             priceV2 {
               amount
               currencyCode
@@ -148,6 +149,7 @@ export class ShopifyService {
           const variantPrice = edge.node.variants?.edges?.[0]?.node?.priceV2;
           return {
             id: edge.node.id,
+            variantId: "",
             title: edge.node.title,
             description: edge.node.description || '',
             price: variantPrice ? `${variantPrice.amount} ${variantPrice.currencyCode}` : 'N/A',
@@ -168,8 +170,10 @@ export class ShopifyService {
       map((result: any) => {
         const product = result.data.product;
         const variantPrice = product?.variants?.edges?.[0]?.node?.priceV2;
+        const variantId = product?.variants?.edges?.[0]?.node?.id;
         return {
           id: product.id,
+          variantId: variantId || '',
           title: product.title,
           description: product.description || '',
           price: variantPrice ? `${variantPrice.amount} ${variantPrice.currencyCode}` : 'N/A',
