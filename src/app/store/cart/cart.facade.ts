@@ -67,7 +67,7 @@ export class CartFacade {
    * Fetch and reload cart data
    * @param cartId Cart ID to fetch
    */
-  loadCart(cartId: string, variantId:string, quantity: number): void {
+  loadCart(cartId: string): void {
     //validate cart if not exists create cart 
     this.store.dispatch(CartActions.getCart({ cartId }));
   }
