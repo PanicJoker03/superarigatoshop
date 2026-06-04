@@ -17,4 +17,12 @@ export class EnvironmentService {
   public get apiVersion(): string {
     return environment.shopify.apiVersion;
   }
+
+  public get chatbotIntegrationID(): string {
+    return environment.chatbotIntegrationID;
+  }
+
+  public get chatbotServiceInstanceID(): string {
+    return environment.chatbotServiceInstanceID;
+  }
 }

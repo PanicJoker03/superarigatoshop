@@ -1,5 +1,8 @@
 export const environment = {
     production: true,
+    renderApiSecret: "",
+    chatbotIntegrationID: "",
+    chatbotServiceInstanceID : "",
     shopify: {
         storeUrl : 'https://superarigatodev.myshopify.com',
         apiVersion: '2026-01',

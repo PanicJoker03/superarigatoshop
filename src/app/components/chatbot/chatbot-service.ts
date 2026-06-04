@@ -8,6 +8,7 @@ import {
   DOCUMENT,
   isPlatformBrowser
 } from '@angular/common';
+import { EnvironmentService } from '../../services/environment-service';
 
 declare global {
   interface Window {
@@ -22,7 +23,8 @@ export class ChatbotService {
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    @Inject(PLATFORM_ID) private platformId: object
+    @Inject(PLATFORM_ID) private platformId: object,
+    @Inject(EnvironmentService) private environment: EnvironmentService
   ) {}
 
   loadChat(): void {
@@ -34,9 +36,9 @@ export class ChatbotService {
     }
 
     window.watsonAssistantChatOptions = {
-      integrationID: 'b008d49f-839e-4cef-bebe-7c174b293d6d',
+      integrationID: this.environment.chatbotIntegrationID,
       region: 'au-syd',
-      serviceInstanceID: 'a378277a-ea8f-4773-ab15-bbeaec44c3a4',
+      serviceInstanceID: this.environment.chatbotServiceInstanceID,
       onLoad: async (instance: any) => {
         await instance.render();
       }
