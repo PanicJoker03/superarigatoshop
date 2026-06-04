@@ -19,6 +19,7 @@
             "name": "handle",
             "in": "path",
             "required": true,
+            "description": "Product handle",
             "schema": {
               "type": "string"
             }
@@ -26,15 +27,14 @@
         ],
         "responses": {
           "200": {
-            "description": "Returns an object containing product availability",
+            "description": "Returns product availability",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "product_availability": {
-                      "type": "string",
-                      "description": "Will be 'Yes' or 'No'"
+                      "type": "string"
                     }
                   }
                 }
