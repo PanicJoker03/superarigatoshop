@@ -28,8 +28,14 @@ https://admin.shopify.com/store/superarigatodev/headless/253050/storefront_api
 * apollo
 * angular material
 * shopify api
+* rxjs
 
 #### dev
+
+
+### deploy
+
+deployed automatically when commiting to main
 
 ## TODO
 
