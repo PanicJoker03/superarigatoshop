@@ -32,6 +32,7 @@ https://admin.shopify.com/store/superarigatodev/headless/253050/storefront_api
 
 #### dev
 
+* Currently on development store
 
 ### deploy
 
@@ -42,5 +43,6 @@ deployed automatically when commiting to main
 * create mocks
 * fallback image 404
 * link superarigato.com to Angular
+* manage user accounts with shopify UI redirection
 * link store.superarigato.com to shopify
 * change shopify theme to redirect to superarigato.com

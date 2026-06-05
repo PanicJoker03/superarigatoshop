@@ -1,0 +1,10 @@
+This component connects with watson assistant X
+
+It's a service that wraps raw embed code provided
+by IBM watson
+
+openai.spec.JSON
+
+includes specification for IBM asistant x extension
+that middlewares this chatbot and shopify product 
+knowledge base.

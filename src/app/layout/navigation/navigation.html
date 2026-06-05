@@ -1,11 +1,20 @@
 <nav class="shopy-navigation">
     <div class="shopy-navigation-wrapper">
         <ul>
-            <li><a routerLink="/">Inicio</a></li>
-            <li><a routerLink="/" [queryParams]="{ collectionHandle: 'mouse-pads' }">Mouse Pads</a></li>
-            <li><a routerLink="/" [queryParams]="{ collectionHandle: 'cup-holder' }">Portavasos</a></li>
-            <li><a routerLink="/" [queryParams]="{ collectionHandle: 'tars' }">Tasas</a></li>
-            <li><a routerLink="/" [queryParams]="{ collectionHandle: 'plush' }">Peluches</a></li>
+            <li class="navbar-item"><a routerLink="/">Inicio</a></li>
+            <li class="navbar-item"><a routerLink="/" [queryParams]="{ collectionHandle: 'mouse-pads' }">Mouse Pads</a></li>
+            <li class="navbar-item"><a routerLink="/" [queryParams]="{ collectionHandle: 'cup-holder' }">Portavasos</a></li>
+            <li class="navbar-item"><a routerLink="/" [queryParams]="{ collectionHandle: 'tars' }">Tasas</a></li>
+            <li class="navbar-item"><a routerLink="/" [queryParams]="{ collectionHandle: 'plush' }">Peluches</a></li>
+            <div class="buyer-section">
+                <li class="li-shop-cart">
+                    <img src="img/cart-icon.svg" class="buyer-section-icon">
+                    Carrito
+                </li>            
+                <li class="li-orders">
+                    <a routerLink="/pages/orders"><img src="img/orders-icon.svg" class="buyer-section-icon">Órdenes</a>
+                </li>            
+            </div>
             <!-- <li><a routerLink="?collectionHandle=about">About</a></li> -->
         </ul>
     </div>

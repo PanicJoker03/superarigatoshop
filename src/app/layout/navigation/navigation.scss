@@ -8,6 +8,34 @@
     font-family: 'Paytone One', sans-serif;
 }
 
+.shopy-navigation ul {
+    margin:auto;
+}
+
+.shopy-navigation ul li.navbar-item {
+    padding-top: 0.5rem;
+}
+
+.shopy-navigation .buyer-section {
+    background-color: white;
+    padding: 0.5rem;
+    border-radius: 2rem;
+    color: var(--arigato-blue);
+    display: flex;
+}
+
+.shopy-navigation .buyer-section .buyer-section-icon {
+    width: 1rem;
+    padding-right: 0.5rem;
+    margin-left: 0.5rem;
+    fill: var(--arigato-white);
+}
+
+.shopy-navigation .buyer-section .li-orders {
+    margin-left: 1rem;
+    padding-right: 0.5rem;
+}
+
 ul {
     list-style: none;
     display: flex;
@@ -24,3 +52,4 @@ li a:hover {
     color: var(--arigato-yellow);
     text-decoration: underline;
 }
+
