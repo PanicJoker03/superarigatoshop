@@ -1,11 +1,20 @@
 <nav class="shopy-navigation">
     <div class="shopy-navigation-wrapper">
-        <ul>
-            <li class="navbar-item"><a routerLink="/">Inicio</a></li>
-            <li class="navbar-item"><a routerLink="/" [queryParams]="{ collectionHandle: 'mouse-pads' }">Mouse Pads</a></li>
-            <li class="navbar-item"><a routerLink="/" [queryParams]="{ collectionHandle: 'cup-holder' }">Portavasos</a></li>
-            <li class="navbar-item"><a routerLink="/" [queryParams]="{ collectionHandle: 'tars' }">Tasas</a></li>
-            <li class="navbar-item"><a routerLink="/" [queryParams]="{ collectionHandle: 'plush' }">Peluches</a></li>
+        <ul class="navbar-ulist">
+            <li class="navbar-item">
+                <a routerLink="/">Inicio</a>
+                <button class="navbar-item-dropdown" matButton [matMenuTriggerFor]="menu">Productos</button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'mouse-pads' }">Mouse Pads</button>
+                    <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'cup-holder' }">Posavasos</button>
+                    <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'tars' }">Tazas</button>
+                    <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'plush' }">Peluches</button>
+                </mat-menu>
+                <a class="navbar-item-link" routerLink="/">Personalizados</a>
+                <a class="navbar-item-link" routerLink="/">Blog</a>
+                <a class="navbar-item-link" routerLink="/">Club</a>
+            </li>
+            <li class="navbar-item"></li>
             <div class="buyer-section">
                 <li class="li-shop-cart">
                     <img src="img/cart-icon.svg" class="buyer-section-icon">
@@ -15,7 +24,6 @@
                     <a routerLink="/pages/orders"><img src="img/orders-icon.svg" class="buyer-section-icon">Órdenes</a>
                 </li>            
             </div>
-            <!-- <li><a routerLink="?collectionHandle=about">About</a></li> -->
         </ul>
     </div>
 </nav>

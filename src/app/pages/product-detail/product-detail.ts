@@ -22,7 +22,7 @@ export class ProductDetail {
   private activateRoute = inject(ActivatedRoute);
   private router = inject(Router);
   product = signal<Product | null>(null);
-  quantity = signal<number>(1);
+  quantity = signal<number>(10);
   ngOnInit() {
     //fetch product details by id and set the product signal
     this.activateRoute.queryParamMap.subscribe(params => {
@@ -40,7 +40,7 @@ export class ProductDetail {
     });
   }
   decreaseQuantity() {
-    this.quantity.update(q => Math.max(1, q - 1));
+    this.quantity.update(q => Math.max(10, q - 1));
     // throw new Error('Method not implemented.');
   }
   increaseQuantity() {

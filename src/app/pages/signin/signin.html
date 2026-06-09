@@ -1,1 +1,49 @@
-<p>signin works!</p>
+<div class="sign-in-wrapper">
+    <div class="sign-in-info">
+        <img class="super-arigato-hero" src="img/super-arigato-hero.png" alt="super-arigat-hero">
+    </div>
+    <div class="separator"></div>
+    <div class="sign-in-input-section">
+        <mat-card class="payment-options" appearance="outlined">
+            <mat-card-header>
+                <mat-card-title class="mat-card-title">Inicio de Sesión</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <form>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Correo</mat-label>
+                        <input 
+                            matInput
+                            [formControl]="emailControl"
+                            (blur)="updateEmailErrorMessage()">
+                                <mat-icon matIconSuffix>{{'mail'}}</mat-icon>
+                        @if (emailControl.invalid){
+                            <mat-error>{{emailErrorMessage()}}</mat-error>
+                        }
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Contraseña</mat-label>
+                        <input 
+                            matInput
+                            [type]="hidePassword() ? 'password' : 'text'"
+                            [formControl]="passwordControl"
+                            (blur)="updatePasswordErrorMessage()">
+                        <button
+                            matIconButton 
+                            matSuffix 
+                            (click)="passwordToggleClickEvent($event)"
+                            [attr.aria-label]="'Ocultar'"
+                            [attr.aria-pressed]="hidePassword()"
+                            >
+                                <mat-icon>{{hidePassword() ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                        @if (passwordControl.invalid){
+                            <mat-error>{{passwordErrorMessage()}}</mat-error>
+                        }
+                    </mat-form-field>
+                </form>
+            </mat-card-content>
+        </mat-card>
+        <button class="btn-access" mat-raised-button style="background-color: var(--arigato-red); color: white;">Acceder</button>
+    </div>
+</div>

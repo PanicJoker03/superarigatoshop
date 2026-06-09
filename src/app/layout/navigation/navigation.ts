@@ -6,7 +6,7 @@ import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-navigation',
-  imports: [RouterLink],
+  imports: [RouterLink, MatMenuModule, MatButtonModule],
   templateUrl: './navigation.html',
   styleUrl: './navigation.scss',
 })

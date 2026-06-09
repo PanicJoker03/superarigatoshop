@@ -36,6 +36,7 @@ https://admin.shopify.com/store/superarigatodev/headless/253050/storefront_api
 #### dev
 
 * Currently on development store
+* https://chromewebstore.google.com/detail/angular-devtools/ienfalfjdbdpebioblfackkekamfmbnh 
 
 ### deploy
 
