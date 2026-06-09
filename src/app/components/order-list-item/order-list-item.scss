@@ -1,0 +1,79 @@
+mat-card-header { 
+    justify-content: space-between;
+    background: var(--arigato-blue);
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    color: var(--arigato-white);
+    padding-bottom: 1rem;
+}
+
+mat-card-title,
+mat-card-subtitle {
+    color: var(--arigato-white);
+}
+
+mat-card-subtitle {
+    font-weight: lighter;
+}
+
+.order-item-total {
+    font-weight: bold;
+    font-size: 1.25rem;
+    padding-right: 1rem;
+}
+
+mat-card-content {
+    display: flex;
+    flex-direction: row;
+    padding-top: 1rem;
+}
+
+mat-card-content > * {
+    padding: 0.5rem;
+}
+
+mat-card-content .order-item-information {
+    padding-top: 0;
+    flex: 2;
+}
+
+mat-card-content .order-item-information p {
+    font-weight: bold;
+}
+
+mat-card-content .order-item-actions {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 1rem;
+}
+
+mat-card-content .detail-thumbnail {
+    border-radius: 1rem;
+    border-style: solid;
+    border-color: var(--arigato-black);
+    padding: 0;
+    border-width: 1px;
+}
+
+.order-item-actions .btn-action-reorder {
+    border-color: var(--arigato-white);
+    color: var(--arigato-white);
+    background-color: var(--arigato-red);
+    transition: 0.25s;
+}
+
+.order-item-actions .btn-action-reorder:hover {
+    background-color: var(--arigato-yellow);
+}
+
+.order-item-actions .btn-action-details {
+    border-style: solid;
+    border-color: var(--arigato-red);
+    color: var(--arigato-red);
+}
+
+
+// .order-total {
+//     float: right;
+// }

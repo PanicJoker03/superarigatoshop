@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { EnvironmentService } from '../services/environment-service';
+import { Apollo, gql } from 'apollo-angular';
 
 export interface CartLine {
   id: string;
@@ -20,7 +21,7 @@ export interface Cart {
   lines: CartLine[];
 }
 
-const CART_LINE_FRAGMENT = `
+const CART_LINE_FRAGMENT = gql`
   fragment CartLineFields on CartLine {
     id
     quantity
@@ -43,7 +44,7 @@ const CART_LINE_FRAGMENT = `
   }
 `;
 
-const CREATE_CART_MUTATION = `
+const CREATE_CART_MUTATION = gql`
   mutation CreateCart($input: CartInput!) {
     cartCreate(input: $input) {
       cart {
@@ -66,7 +67,7 @@ const CREATE_CART_MUTATION = `
   ${CART_LINE_FRAGMENT}
 `;
 
-const CART_LINES_ADD_MUTATION = `
+const CART_LINES_ADD_MUTATION = gql`
   mutation AddLines($cartId: ID!, $lines: [CartLineInput!]!) {
     cartLinesAdd(cartId: $cartId, lines: $lines) {
       cart {
@@ -89,7 +90,7 @@ const CART_LINES_ADD_MUTATION = `
   ${CART_LINE_FRAGMENT}
 `;
 
-const CART_LINES_UPDATE_MUTATION = `
+const CART_LINES_UPDATE_MUTATION = gql`
   mutation UpdateLines($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
     cartLinesUpdate(cartId: $cartId, lines: $lines) {
       cart {
@@ -112,7 +113,7 @@ const CART_LINES_UPDATE_MUTATION = `
   ${CART_LINE_FRAGMENT}
 `;
 
-const CART_LINES_REMOVE_MUTATION = `
+const CART_LINES_REMOVE_MUTATION = gql`
   mutation RemoveLines($cartId: ID!, $lineIds: [ID!]!) {
     cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
       cart {
@@ -135,7 +136,7 @@ const CART_LINES_REMOVE_MUTATION = `
   ${CART_LINE_FRAGMENT}
 `;
 
-const GET_CART_QUERY = `
+const GET_CART_QUERY = gql`
   query GetCart($cartId: ID!) {
     cart(id: $cartId) {
       id
@@ -159,7 +160,9 @@ export class CartService {
   private readonly endpoint: string;
   private readonly headers: HttpHeaders;
 
-  constructor(private http: HttpClient, private environment: EnvironmentService) {
+  constructor(
+    private environment: EnvironmentService, 
+    private apollo:Apollo) {
     this.endpoint = `${this.environment.storeUrl}/api/${this.environment.apiVersion}/graphql.json`;
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -168,57 +171,68 @@ export class CartService {
   }
 
   public createCart(variantId: string, quantity = 1): Observable<Cart> {
-    return this.send(CREATE_CART_MUTATION, {
-      input: {
+    return this.apollo.mutate({
+      mutation: CREATE_CART_MUTATION,
+      variables: {
+        input: {
+          lines: [
+            {
+              merchandiseId: variantId,
+              quantity,
+            },
+          ],
+        },
+      }
+    }).pipe(map((response) => this.mapCartResponse(response, 'cartCreate')));
+  }
+
+  public addLine(cartId: string, variantId: string, quantity = 1): Observable<Cart> {
+    return this.apollo.mutate({
+      mutation: CART_LINES_ADD_MUTATION,
+      variables: {
+        cartId,
         lines: [
           {
             merchandiseId: variantId,
             quantity,
           },
         ],
-      },
-    }).pipe(map((response) => this.mapCartResponse(response, 'cartCreate')));
-  }
-
-  public addLine(cartId: string, variantId: string, quantity = 1): Observable<Cart> {
-    return this.send(CART_LINES_ADD_MUTATION, {
-      cartId,
-      lines: [
-        {
-          merchandiseId: variantId,
-          quantity,
-        },
-      ],
+      }
     }).pipe(map((response) => this.mapCartResponse(response, 'cartLinesAdd')));
   }
 
   public updateLine(cartId: string, lineId: string, quantity: number): Observable<Cart> {
-    return this.send(CART_LINES_UPDATE_MUTATION, {
-      cartId,
-      lines: [
-        {
-          id: lineId,
-          quantity,
-        },
-      ],
+    return this.apollo.mutate({
+      mutation: CART_LINES_UPDATE_MUTATION,
+      variables: {
+        cartId,
+        lines: [
+          {
+            id: lineId,
+            quantity,
+          },
+        ],
+      }
     }).pipe(map((response) => this.mapCartResponse(response, 'cartLinesUpdate')));
   }
 
   public removeLines(cartId: string, lineIds: string[]): Observable<Cart> {
-    return this.send(CART_LINES_REMOVE_MUTATION, {
-      cartId,
-      lineIds,
+    return this.apollo.mutate({
+      mutation: CART_LINES_REMOVE_MUTATION,
+      variables: {
+        cartId,
+        lineIds,
+      }
     }).pipe(map((response) => this.mapCartResponse(response, 'cartLinesRemove')));
   }
 
   public getCart(cartId: string): Observable<Cart> {
-    return this.send(GET_CART_QUERY, {
-      cartId,
+    return this.apollo.query<{ cart: any }>({
+      query: GET_CART_QUERY,
+      variables: {
+        cartId,
+      }
     }).pipe(map((response) => this.mapCartObject(response.data?.cart)));
-  }
-
-  private send(query: string, variables: Record<string, unknown>): Observable<any> {
-    return this.http.post<any>(this.endpoint, { query, variables }, { headers: this.headers });
   }
 
   private mapCartResponse(response: any, payloadName: string): Cart {

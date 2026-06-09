@@ -132,7 +132,7 @@ const GET_PRODUCTS_BY_COLLECTION = gql`
   providedIn: 'root',
 })
 export class ShopifyService {
-  constructor(private http: HttpClient, private apollo: Apollo, private environment: EnvironmentService) {}
+  constructor(private apollo: Apollo, private environment: EnvironmentService) {}
 
   // Example method to fetch products from Shopify API
   getProducts(collectionHandle: string | null | undefined = undefined): Observable<Product[]> {
