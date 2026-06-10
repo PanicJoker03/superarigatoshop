@@ -41,9 +41,21 @@
                             <mat-error>{{passwordErrorMessage()}}</mat-error>
                         }
                     </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Teléfono</mat-label>
+                        <input
+                            matInput
+                            [formControl]="phoneControl"
+                            (blur)="updatePhoneErrorMessage()">
+                                <mat-icon matIconSuffix>{{'call'}}</mat-icon>
+                        @if (phoneControl.invalid){
+                            <mat-error>{{phoneErrorMessage()}}</mat-error>
+                        }
+                    </mat-form-field>
+                    <button type="submit" class="btn-access" mat-raised-button style="background-color: var(--arigato-red); color: white;" (click)="signin()">Acceder</button>
                 </form>
             </mat-card-content>
         </mat-card>
-        <button class="btn-access" mat-raised-button style="background-color: var(--arigato-red); color: white;">Acceder</button>
+        
     </div>
 </div>

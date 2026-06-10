@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { gql } from '@apollo/client';
 import { Apollo } from 'apollo-angular';
-import { EnvironmentService } from '../services/environment-service';
 import { map, Observable } from 'rxjs';
 import { Product } from '../components/product-grid-item/product.model';
 
@@ -132,7 +131,7 @@ const GET_PRODUCTS_BY_COLLECTION = gql`
   providedIn: 'root',
 })
 export class ShopifyService {
-  constructor(private apollo: Apollo, private environment: EnvironmentService) {}
+  constructor(private apollo: Apollo) {}
 
   // Example method to fetch products from Shopify API
   getProducts(collectionHandle: string | null | undefined = undefined): Observable<Product[]> {

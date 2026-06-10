@@ -18,6 +18,7 @@ import { CartLine } from '../../commerce/cart-service';
 import { isPlatformBrowser } from '@angular/common';
 import { CurrencyPipe } from '@angular/common';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CustomerService } from '../../commerce/customer-service';
 
 @Component({
   selector: 'app-signin',  
@@ -40,11 +41,18 @@ export class Signin {
       Validators.minLength(8)
     ]);
 
+  readonly phoneControl = new FormControl('',
+    [
+      Validators.required,
+      Validators.minLength(10)
+    ]);
+
   emailErrorMessage = signal('');
   passwordErrorMessage = signal('');
+  phoneErrorMessage = signal('');
   hidePassword = signal(true);
 
-  constructor(){
+  constructor(private customer:CustomerService){
     merge(this.emailControl.statusChanges, this.emailControl.valueChanges)
     .pipe(takeUntilDestroyed())
     .subscribe(()=> this.updateEmailErrorMessage());
@@ -71,16 +79,58 @@ export class Signin {
       this.passwordErrorMessage.set('Ingresa dato por favor');
     }
     else if (this.passwordControl.hasError('minlength')){
-      this.passwordErrorMessage.set('La contraseña debe tener al menos 8 caracteres');
+      this.passwordErrorMessage.set('Captura al menos 8 caracteres');
     }
     else{
       this.passwordErrorMessage.set('');
     }
   }
 
+  updatePhoneErrorMessage(){
+    if(this.phoneControl.hasError('required')){
+      this.phoneErrorMessage.set('Ingresa dato por favor');
+    }
+    else if (this.phoneControl.hasError('minlength')) {
+      this.phoneErrorMessage.set('Captura al menos 10 dígitos');
+    }
+    else {
+      this.phoneErrorMessage.set('');
+    }
+  }
+
   passwordToggleClickEvent(event: MouseEvent) {
     this.hidePassword.set(!this.hidePassword());
     event.stopPropagation();
+  }
+
+  //test sign in
+  signin(){
+    //#begin# create customer
+
+    this.updateEmailErrorMessage();
+    this.updatePasswordErrorMessage();
+    this.updatePhoneErrorMessage();
+
+    const credentials = {
+      email : this.emailControl.value!,
+      password : this.passwordControl.value!,
+      phone : this.phoneControl.value!
+    };
+
+    //validate forms
+    const formCaptureValid = 
+      this.emailControl.valid &&
+      this.passwordControl.valid && 
+      this.phoneControl.valid;
+
+    if(formCaptureValid){
+      console.log("Sign in with credentials:", credentials);
+      this.customer.createCustomer(
+        credentials.email, credentials.password, credentials.phone).subscribe(()=>{
+        console.log('...');
+      });
+    }
+    //#end# 
   }
 }
 

@@ -1,11 +1,21 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 
+interface CustomerCreationRequired {
+  firstName : string,
+  lastName : string,
+  fakePhone : string
+} 
+
 @Injectable({
   providedIn: 'root',
 })
 export class EnvironmentService {
   // This service exposes Shopify storefront configuration values used by commerce services.
+  public get isProduction():boolean {
+    return environment.production;
+  }
+
   public get storeFrontToken(): string {
     return environment.shopify.storeFrontToken;
   }
@@ -25,4 +35,8 @@ export class EnvironmentService {
   public get chatbotServiceInstanceID(): string {
     return environment.chatbotServiceInstanceID;
   }
+
+  public get customerCreationRequireds() : CustomerCreationRequired {
+    return environment.customerCreationRequired;
+  } 
 }

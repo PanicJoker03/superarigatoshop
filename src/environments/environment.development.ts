@@ -7,5 +7,10 @@ export const environment = {
         storeUrl : 'https://superarigatodev.myshopify.com',
         apiVersion: '2026-01',
         storeFrontToken: "649bdee2019c000717a969312371c547"
+    },
+    customerCreationRequired : {
+        firstName : 'Aegis',
+        lastName : 'Hyper',
+        fakePhone: '+64213444048'
     }
 };

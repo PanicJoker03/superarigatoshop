@@ -15,6 +15,8 @@ This project is made with Angular +19, so it doesn't use module based schema.
 * venta
 * compra
 * carga de productos
+* consulta ordenes
+* administracion implicita de cuenta compradores  
 
 ### shopify links
 
@@ -25,11 +27,14 @@ api:
 https://admin.shopify.com/store/superarigatodev/headless/253050/storefront_api
 
 
+## setup your env
+
+* configure vs code with continue, use ollama or similar  
+
 ## Libs
 
 * apollo
 * angular material
-* shopify api
 * rxjs
 * graphql
 
@@ -37,6 +42,7 @@ https://admin.shopify.com/store/superarigatodev/headless/253050/storefront_api
 
 * Currently on development store
 * https://chromewebstore.google.com/detail/angular-devtools/ienfalfjdbdpebioblfackkekamfmbnh 
+* important to comprehend Shopify Storefront API
 
 ### deploy
 
@@ -45,6 +51,7 @@ deployed automatically when commiting to main
 ## TODO
 
 * create mocks
+* tests cases with cypress
 * fallback image 404
 * link superarigato.com to Angular
 * manage user accounts with shopify UI redirection
@@ -52,6 +59,7 @@ deployed automatically when commiting to main
 * change shopify theme to redirect to superarigato.com
 * Prioridad B > minijuego de super arigato pasar, retencion de cliente 
 * Prioridad B > app de super arigato poo
+* publish on Aegis Hyper dedicated mx server 
 
 * Prioridad A > Subir productos, pedir a angel, amablemente
 

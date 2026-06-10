@@ -26,6 +26,8 @@ export const appConfig: ApplicationConfig = {
     provideEffects([CartEffects]),
 
     provideApollo(() => {
+      //this provide setups shopify store front token and store url.
+      //Configuration values assigned on environment.ts file
       console.log('Initializing Apollo Client with Shopify Storefront API');
       console.log('Shopify Store URL:', environment.shopify.storeUrl);
       console.log('Shopify Storefront Token:', environment.shopify.storeFrontToken);
