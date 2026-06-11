@@ -18,7 +18,7 @@ import { CartLine } from '../../commerce/cart-service';
 import { isPlatformBrowser } from '@angular/common';
 import { CurrencyPipe } from '@angular/common';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CustomerService, CustomerCreateResponse, CustomerAccessTokenCreateResponse } from '../../commerce/customer-service';
+import { CustomerService, CustomerCreateResponse, CustomerAccessTokenCreateResponse, CustomerUserError } from '../../commerce/customer-service';
 import {
   MAT_DIALOG_DATA,
   MatDialog,
@@ -141,6 +141,9 @@ export class Signin {
       //under construction, move to customer service
       
       //test access token . . . . 
+
+      //lcng: please, take a look to ./flow-chart.md to
+      //understand how this login method proceeds
       this.customer.customerAccessTokenCreate(credentials.email, credentials.password)
         .pipe(
           switchMap((response: CustomerAccessTokenCreateResponse) => {
@@ -150,16 +153,26 @@ export class Signin {
                 //all ok ... 
                 //user not exists or something else... try to create account
                 console.log("user not exists or something else... try to create account");
+                console.log(response);
               return this.customer.createCustomer(
                 credentials.email, 
                 credentials.password, 
                 credentials.phone)
                 .pipe(
                   switchMap((createResponse:CustomerCreateResponse)=>{
+                    console.log('user creation attempt response:', createResponse);
                     if(createResponse.data.customerCreate.customerUserErrors.length>0){
+                      let errMessage = createResponse.data.customerCreate.customerUserErrors[0].message
+                      //code -> TAKEN
+                      const emailTaken = 
+                        createResponse.data.customerCreate.customerUserErrors
+                        .some(err=> err.code == 'TAKEN');
+                      if(emailTaken){
+                        errMessage = 'Wrong password';
+                      }
                       this.dialog.open(DialogErrorSignIn, {
                                       data: {
-                                        message: createResponse.data.customerCreate.customerUserErrors[0].message
+                                        message: errMessage
                                       }
                                     });
                                     return EMPTY;
@@ -203,7 +216,7 @@ export class Signin {
               .accessToken;
             
             localStorage.setItem("customerAccessToken", accessToken);
-            
+
           }
         else {
           console.log('problem generating token');
