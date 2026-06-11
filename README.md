@@ -60,6 +60,7 @@ deployed automatically when commiting to main
 * Prioridad B > minijuego de super arigato pasar, retencion de cliente 
 * Prioridad B > app de super arigato poo
 * publish on Aegis Hyper dedicated mx server 
+* console service
 
 * Prioridad A > Subir productos, pedir a angel, amablemente
 

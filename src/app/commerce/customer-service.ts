@@ -3,23 +3,61 @@ import { Apollo, gql } from 'apollo-angular';
 import { map, Observable } from 'rxjs';
 import { EnvironmentService } from '../services/environment-service';
 
-interface CustomerCreateInput {
+export interface CustomerCreateInput {
   acceptsMarketing:boolean,
   email : string,
   firstName : string,
   lastName : string,
   password : string,
   phone : string
-}
+};
+
+export interface CustomerUserError {
+  code: string
+  message : string
+};
+
+export interface CustomerCreateResponse {
+  data : {
+    customerCreate : {
+      customer: object,
+      customerUserErrors: CustomerUserError[] 
+    }
+  },
+  extensions : {
+    cost: {
+      requestedQueryCost: number
+    }
+  },
+  loading: boolean
+};
+
+export interface CustomerAccessTokenCreateResponse {
+  data : {
+    customerAccessTokenCreate : {
+      customerAccessToken: {
+        accessToken : string,
+        expiresAt : Date
+      },
+      customerUserErrors: CustomerUserError[] 
+    }
+  },
+  extensions : {
+    cost: {
+      requestedQueryCost: number
+    }
+  },
+  loading: boolean
+};
 
 //todo: retrieve id from localstorage...
-interface CustomerActivateInput {
+export interface CustomerActivateInput {
   id : string,
   input : {
     activationToken : string,
     password : string
   }
-}
+};
 
 //graphql calls 
 const CREATE_CUSTOMER_MUTATION = gql`
@@ -60,7 +98,23 @@ mutation activateCustomerAccount($id: ID!, $input: CustomerActivateInput!) {
       message
     }
   }
-}`
+}`;
+
+const GET_CUSTOMER_ACCESS_TOKEN_CREATE = gql`
+mutation customerAccessTokenCreate($input: CustomerAccessTokenCreateInput!) {
+  customerAccessTokenCreate(input: $input) {
+    customerAccessToken {
+      accessToken
+      expiresAt
+    }
+    customerUserErrors {
+      code
+      field
+      message
+    }
+  }
+}
+`;
 
 const GET_CUSTOMER_MUTATION = gql`
 query getCustomer($email : String!) { 
@@ -89,7 +143,7 @@ query getCustomer($email : String!) {
        }
      }
    } 
-}`
+}`;
 
 const GET_CUSTOMER_ADDRESS_MUTATION = gql`
 mutation updateCustomerAddress($input: CustomerAddressInput!, $id : ID!) { 
@@ -116,7 +170,7 @@ mutation updateCustomerAddress($input: CustomerAddressInput!, $id : ID!) {
       }
     } 
   }
-}`
+}`;
 
 const GET_CUSTOMER_ADDRESS_BY_ID_MUTATION = gql`
 mutation updateCustomerAddressById($input: CustomerAddressInput!, $id : ID!) { 
@@ -151,7 +205,21 @@ mutation updateCustomerAddressById($input: CustomerAddressInput!, $id : ID!) {
 export class CustomerService {
   constructor(private apollo:Apollo, private environment:EnvironmentService){}
 
-  createCustomer(email:string, password:string, phone:string):Observable<void>{
+  customerAccessTokenCreate(email: string, password: string): Observable<any> {
+    return this.apollo.mutate(
+      {
+        mutation: GET_CUSTOMER_ACCESS_TOKEN_CREATE,
+        variables: {
+          input: {
+            email: email,
+            password: password
+          }
+        }
+      }
+    );
+  }
+
+  createCustomer(email:string, password:string, phone:string):Observable<CustomerCreateResponse>{
     const requiredValues = this.environment.customerCreationRequireds;
     const customer:CustomerCreateInput = {
         acceptsMarketing : false,
@@ -159,7 +227,7 @@ export class CustomerService {
         firstName : requiredValues.firstName,
         lastName : requiredValues.lastName,
         password : password,
-        phone : phone
+        phone : this.environment.isProduction ? phone : this.environment.customerCreationRequireds.fakePhone
     };
 
     return this.apollo.mutate({

@@ -45,6 +45,7 @@
                         <mat-label>Teléfono</mat-label>
                         <input
                             matInput
+                            type="number"
                             [formControl]="phoneControl"
                             (blur)="updatePhoneErrorMessage()">
                                 <mat-icon matIconSuffix>{{'call'}}</mat-icon>

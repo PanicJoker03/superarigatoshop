@@ -11,6 +11,6 @@ export const environment = {
     customerCreationRequired : {
         firstName : 'Aegis',
         lastName : 'Hyper',
-        fakePhone: '+64213444048'
+        fakePhone: '+64213444052'
     }
 };
