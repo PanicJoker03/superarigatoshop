@@ -59,6 +59,30 @@ export interface CustomerActivateInput {
   }
 };
 
+// export interface CustomerOrder {
+
+// }
+
+export interface CustomerOrder {
+  id: string,
+  orderNumber: number,
+  processedAt : Date,
+  shipmentStatus: string,
+  orderSummary: string,
+  totalPrice: {
+    amount: number,
+    currencyCode: string
+  },
+  productImageUrl:string
+}
+
+export interface CustomerOrderLine {
+  quantity: number,
+  title: string,
+  variantId:string,
+  productImageUrl: string
+}
+
 //graphql calls 
 const CREATE_CUSTOMER_MUTATION = gql`
 mutation createCustomerAccount($input: CustomerCreateInput!) {
@@ -199,6 +223,42 @@ mutation updateCustomerAddressById($input: CustomerAddressInput!, $id : ID!) {
   }
 }`;
 
+const GET_CUSTOMER_ORDERS = gql
+  `query getCustomerOrders($customerAccessToken: String!, $first : Int!) { 
+  customer(customerAccessToken: $customerAccessToken) {
+    id
+    orders(first: $first){
+      edges{
+        node{
+          id
+          orderNumber
+          processedAt
+          totalPrice {
+            amount
+            currencyCode
+          }
+
+          lineItems(first:20){
+            edges {
+              node {
+                title
+                quantity
+                variant {
+                  id
+                  image {
+                    url
+                    altText
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}`;
+
 @Injectable({
   providedIn: 'root',
 })
@@ -238,6 +298,41 @@ export class CustomerService {
     }).pipe(map((result:any)=>{
       console.log("customer created response from shopify api: ", result);
       return result;
+    }));
+  }
+
+  getCustomerOrders(accessToken:string):Observable<CustomerOrder[]>{
+    return this.apollo.query({
+      query: GET_CUSTOMER_ORDERS,
+      variables: {
+        first: 110,
+       customerAccessToken : accessToken
+     }
+    }).pipe(map((response:any)=>{
+      const customerOrders = response.data.customer.orders.edges;
+      const orders:CustomerOrder[] = customerOrders.map((edge:any)=>{
+        const orderInfo = edge.node;
+        //reducing item product titles
+        const orderSummary:string = orderInfo.lineItems.edges.reduce((acumm:string, edge:any, index:number)=>{
+          return `${acumm}${index==0 ? "" : ", "}${edge.node.quantity} ${edge.node.title}`; 
+        }, "");
+        console.log(orderInfo.lineItems.edges[0].node);
+        const productImageUrl = orderInfo.lineItems.edges[0].node.variant.image.url;
+        //summarizing information in legible format
+        return <CustomerOrder>{
+          id: orderInfo.id,
+          orderNumber: orderInfo.orderNumber,
+          processedAt: orderInfo.processedAt,
+          shipmentStatus: 'NO CODED', //todo: retrieve code from gql
+          orderSummary: orderSummary,
+          totalPrice: {
+            amount: Number.parseFloat(orderInfo.totalPrice.amount),
+            currencyCode: orderInfo.totalPrice.currencyCode
+          },
+          productImageUrl: productImageUrl
+        };
+      });
+      return orders;
     }));
   }
 }

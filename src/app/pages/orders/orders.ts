@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, PLATFORM_ID, signal } from '@angular/core';
 import { Product } from '../../components/product-grid-item/product.model';
 import { ShopifyService } from '../../commerce/shopify-service';
 // import { CartService } from '../../commerce/cart-service';
@@ -11,6 +11,8 @@ import { CartFacade } from '../../store/cart';
 import { filter, take } from 'rxjs/operators';
 import { OrderListItem } from "../../components/order-list-item/order-list-item";
 import {MatMenuModule} from '@angular/material/menu';
+import { CustomerOrder, CustomerService } from '../../commerce/customer-service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-orders',
@@ -18,4 +20,33 @@ import {MatMenuModule} from '@angular/material/menu';
   templateUrl: './orders.html',
   styleUrl: './orders.scss',
 })
-export class Orders {}
+export class Orders {
+  router = inject(Router);
+  customer = inject(CustomerService);
+  platformId = inject(PLATFORM_ID);
+  customerOrders = signal<CustomerOrder[]>([]);
+  ngOnInit(){
+    //#begin# try to retrieve Customer
+    if(isPlatformBrowser(this.platformId)){
+      console.log('attempting to retrieve customer orders')
+      const accessToken = localStorage.getItem("customerAccessToken");
+      if(accessToken){
+        //retrieve orders ...
+        this.customer.getCustomerOrders(accessToken).subscribe({
+          next: (orders)=>{
+            console.log('orders retrieved successfully!', orders);
+            this.customerOrders.set(orders);
+          },
+          error: (error)=> {
+            console.log('orders retrieved failed!', error);
+          }
+        });
+      }else{
+        //redirect to sign in 
+        console.log('navigating to sign in, token not found...')
+        this.router.navigate(['/signin']);
+      }
+    }
+    //#end#
+  }
+}

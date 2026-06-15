@@ -1,2 +1,12 @@
 <h1>Mis Órdenes</h1>
-<app-order-list-item></app-order-list-item>
+@for (order of customerOrders(); track $index) {
+    <app-order-list-item
+        [orderNumber]="order.orderNumber.toString()"
+        [imageUrl]="order.productImageUrl"
+        [orderStatus]="order.shipmentStatus"
+        [orderDate]="order.processedAt"
+        [productSummary]="order.orderSummary"
+        [totalPrice]="order.totalPrice.amount"
+        >
+    </app-order-list-item>
+}

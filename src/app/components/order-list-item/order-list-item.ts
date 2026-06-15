@@ -4,15 +4,19 @@ import {MatCardModule} from '@angular/material/card';
 import { CdkObserveContent } from "@angular/cdk/observers";
 import { RouterLink } from '@angular/router';
 import {MatChip, MatChipsModule} from '@angular/material/chips';
+import { CurrencyPipe, DatePipe } from '@angular/common'
 
 @Component({
   selector: 'app-order-list-item',
-  imports: [MatCardModule, MatButtonModule, RouterLink, MatChipsModule],
+  imports: [MatCardModule, MatButtonModule, RouterLink, MatChipsModule, CurrencyPipe, DatePipe],
   templateUrl: './order-list-item.html',
   styleUrl: './order-list-item.scss',
 })
 export class OrderListItem {
-  @Input() orderId: string = '';
+  @Input() orderNumber: string = '';
   @Input() imageUrl: string = '';
+  @Input() orderStatus: string = '';
   @Input() orderDate: Date = new Date;
+  @Input() productSummary:string = ''
+  @Input() totalPrice:number = 0;
 }
