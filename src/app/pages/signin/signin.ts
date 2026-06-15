@@ -217,6 +217,9 @@ export class Signin {
             
             localStorage.setItem("customerAccessToken", accessToken);
 
+            //redirect to home ... 
+            this.router.navigate(['/']);
+
           }
         else {
           console.log('problem generating token');
