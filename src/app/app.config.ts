@@ -1,3 +1,6 @@
+import { registerLocaleData } from '@angular/common'
+import localeEsMx  from  '@angular/common/locales/es-MX'
+import { LOCALE_ID } from '@angular/core'
 import { ApplicationConfig, provideBrowserGlobalErrorListeners, inject } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
@@ -14,8 +17,13 @@ import { provideEffects } from '@ngrx/effects';
 import { cartReducer } from './store/cart/cart.reducer';
 import { CartEffects } from './store/cart/cart.effects';
 
+//register locale es-MX
+registerLocaleData(localeEsMx);
+
 export const appConfig: ApplicationConfig = {
   providers: [
+    //provide es-MX
+    { provide: LOCALE_ID, useValue: 'es-MX' },
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
