@@ -50,6 +50,7 @@ deployed automatically when commiting to main
 
 ## TODO
 
+* replace https://superarigatodev.myshopify.com/cart with published site 
 * create mocks
 * tests cases with cypress
 * fallback image 404
