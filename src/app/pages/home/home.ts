@@ -38,6 +38,9 @@ export class Home {
         case 'cup-holder':
           collectionHandle = 'Portavasos';
           break;
+        case 'microfiber':
+          collectionHandle = 'Microfibra';
+          break;
         default:
           collectionHandle = null;
       }
