@@ -40,7 +40,7 @@ export const appConfig: ApplicationConfig = {
       console.log('Shopify Store URL:', environment.shopify.storeUrl);
       console.log('Shopify Storefront Token:', environment.shopify.storeFrontToken);
       const httpLink = inject(HttpLink);
-      const uri = `${environment.shopify.storeUrl}/api/2025-01/graphql.json`;
+      const uri = `${environment.shopify.storeUrl}/api/${environment.shopify.apiVersion}/graphql.json`;
       const authLink = setContext((_, { headers }) => ({
         headers: {
           ...headers,
