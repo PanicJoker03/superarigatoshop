@@ -124,12 +124,6 @@ export class Signin {
     this.updatePasswordErrorMessage();
     this.updatePhoneErrorMessage();
 
-    const credentials = {
-      email : this.emailControl.value!,
-      password : this.passwordControl.value!,
-      phone : this.phoneControl.value!
-    };
-
     //validate forms
     const formCaptureValid = 
       this.emailControl.valid &&
@@ -137,10 +131,25 @@ export class Signin {
       this.phoneControl.valid;
 
     if(formCaptureValid){
-      console.log("Sign in with credentials:", credentials);
       //under construction, move to customer service
       
       //test access token . . . . 
+
+      //mini validation if phone not starts with +52, prepend it
+      if(!this.phoneControl.value?.includes("+52")){
+        const phoneVal = this.phoneControl.value; 
+        this.phoneControl.setValue(`+52${phoneVal}`);
+      }
+      
+      const credentials = {
+        email : this.emailControl.value!,
+        password : this.passwordControl.value!,
+        phone : 
+          this.phoneControl.value!.trim()
+            .replaceAll(" ", '')
+            .replaceAll("-", '')
+      };
+
 
       //lcng: please, take a look to ./flow-chart.md to
       //understand how this login method proceeds
@@ -183,23 +192,6 @@ export class Signin {
                       credentials.password
                     );
                   }));
-
-              //validate 
-              // console.log('bad user... trying to create user');
-              // //has errors?
-              // if (response.data.customerCreate.customerUserErrors.length > 0) {
-              //   this.dialog.open(DialogErrorSignIn, {
-              //     data: {
-              //       message: response.data.customerCreate.customerUserErrors[0].message
-              //     }
-              //   });
-            //}
-
-              // this.dialog.open(DialogErrorSignIn, {
-              //   data : {
-              //     message : response.data.customerAccessTokenCreate.customerUserErrors[0].message
-              //   }
-              // });
           }))
         .subscribe((response: CustomerAccessTokenCreateResponse) => {
           console.log(response);
@@ -225,7 +217,6 @@ export class Signin {
           console.log('problem generating token');
         }
       });
-      // return;
 
       //test create
 

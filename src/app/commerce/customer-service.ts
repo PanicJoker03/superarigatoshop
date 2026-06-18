@@ -287,7 +287,7 @@ export class CustomerService {
         firstName : requiredValues.firstName,
         lastName : requiredValues.lastName,
         password : password,
-        phone : this.environment.isProduction ? phone : this.environment.customerCreationRequireds.fakePhone
+        phone : this.environment.isProduction ? phone.toString() : this.environment.customerCreationRequireds.fakePhone
     };
 
     return this.apollo.mutate({
