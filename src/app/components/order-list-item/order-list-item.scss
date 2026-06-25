@@ -73,7 +73,26 @@ mat-card-content .detail-thumbnail {
     color: var(--arigato-red);
 }
 
+.status-fulfilled .mat-mdc-standard-chip {
+    background-color: #8dffac;
+}
 
-// .order-total {
-//     float: right;
-// }
+.status-unfulfilled .mat-mdc-standard-chip,
+.status-partially-fulfilled .mat-mdc-standard-chip,
+.status-pending-fulfillment .mat-mdc-standard-chip
+{
+    background-color: #ffeb78;
+}
+
+.status-in-progress .mat-mdc-standard-chip
+{
+    background-color: #8dbbff;
+}
+
+.status-open .mat-mdc-standard-chip,
+.status-restocked .mat-mdc-standard-chip,
+.status-scheduled .mat-mdc-standard-chip,
+.status-on-hold .mat-mdc-standard-chip
+{
+    background-color: #ffb778;
+}

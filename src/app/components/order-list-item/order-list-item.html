@@ -12,9 +12,9 @@
             src="{{imageUrl}}" 
         alt="" /> 
         
-        <div class="order-item-information">
+        <div [ngClass]="orderFulfillmentCss(orderStatus)" class="order-item-information">
             <mat-chip-set>
-                <mat-chip>{{ orderStatus }}</mat-chip>
+                <mat-chip>{{ orderFulfillmentTraduction(orderStatus) }} <mat-icon matChipTrailingIcon>inventory_2</mat-icon> </mat-chip>
             </mat-chip-set>
             <p>{{ productSummary }}</p>
         </div>

@@ -233,6 +233,7 @@ const GET_CUSTOMER_ORDERS = gql
           id
           orderNumber
           processedAt
+          fulfillmentStatus
           totalPrice {
             amount
             currencyCode
@@ -248,6 +249,15 @@ const GET_CUSTOMER_ORDERS = gql
                   image {
                     url
                     altText
+                  }
+
+                  product {
+                    id
+                    title
+                    featuredImage {
+                      url
+                      altText
+                    }
                   }
                 }
               }
@@ -309,6 +319,7 @@ export class CustomerService {
        customerAccessToken : accessToken
      }
     }).pipe(map((response:any)=>{
+      console.log("Store Front response:" , response);
       const customerOrders = response.data.customer.orders.edges;
       const orders:CustomerOrder[] = customerOrders.map((edge:any)=>{
         const orderInfo = edge.node;
@@ -317,13 +328,21 @@ export class CustomerService {
           return `${acumm}${index==0 ? "" : ", "}${edge.node.quantity} ${edge.node.title}`; 
         }, "");
         console.log(orderInfo.lineItems.edges[0].node);
-        const productImageUrl = orderInfo.lineItems.edges[0].node.variant.image.url;
+        //validate variant image, can be null for drafting products . . . .
+        const variant = orderInfo.lineItems.edges[0].node.variant;
+        let productImageUrl = "";
+        if(variant){
+          productImageUrl = variant.image.url;
+        }
+        else {
+          productImageUrl = this.environment.ordersFallbackImage;
+        }
         //summarizing information in legible format
         return <CustomerOrder>{
           id: orderInfo.id,
           orderNumber: orderInfo.orderNumber,
           processedAt: orderInfo.processedAt,
-          shipmentStatus: 'NO CODED', //todo: retrieve code from gql
+          shipmentStatus: orderInfo.fulfillmentStatus, //todo: retrieve code from gql
           orderSummary: orderSummary,
           totalPrice: {
             amount: Number.parseFloat(orderInfo.totalPrice.amount),

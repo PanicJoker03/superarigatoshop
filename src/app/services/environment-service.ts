@@ -39,4 +39,8 @@ export class EnvironmentService {
   public get customerCreationRequireds() : CustomerCreationRequired {
     return environment.customerCreationRequired;
   } 
+
+  public get ordersFallbackImage():string {
+    return environment.ordersFallbackImage;
+  }
 }
