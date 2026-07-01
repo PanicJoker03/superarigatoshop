@@ -1,6 +1,7 @@
 <h1>Mis Órdenes</h1>
 @for (order of customerOrders(); track $index) {
     <app-order-list-item
+        [orderId]="order.id"
         [orderNumber]="order.orderNumber.toString()"
         [imageUrl]="order.productImageUrl"
         [orderStatus]="order.shipmentStatus"

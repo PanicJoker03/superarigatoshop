@@ -2,7 +2,7 @@ import { Component, inject, Input } from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import { CdkObserveContent } from "@angular/cdk/observers";
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import {MatChip, MatChipsModule} from '@angular/material/chips';
 import { CurrencyPipe, DatePipe, NgClass } from '@angular/common'
 import { MatIcon } from "@angular/material/icon";
@@ -14,15 +14,27 @@ import { MatIcon } from "@angular/material/icon";
   styleUrl: './order-list-item.scss',
 })
 export class OrderListItem {
+  @Input() orderId: string ='';
   @Input() orderNumber: string = '';
   @Input() imageUrl: string = '';
   @Input() orderStatus: string = '';
   @Input() orderDate: Date = new Date;
   @Input() productSummary:string = ''
   @Input() totalPrice:number = 0;
+  router:Router = inject(Router);
   
   public orderFulfillmentCss(shopifyStatus:string):string{
     return `status-${shopifyStatus.replace('_', '-').toLowerCase()}`;
+  }
+
+  public btnDetailsClick(e:Event, orderId:string){
+    console.log("Navigating to order details pages...");
+    console.log(`OrderId: ${orderId}`);
+    console.log('Encoding order id...');
+    const encodedGid = btoa(this.orderId);
+    this.router.navigate([`/pages/orders-details/${encodedGid}`]).then(()=>{
+      console.log("Ok");
+    });
   }
 
   public orderFulfillmentTraduction(status:string):string {

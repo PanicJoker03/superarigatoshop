@@ -338,6 +338,7 @@ export class CustomerService {
           productImageUrl = this.environment.ordersFallbackImage;
         }
         //summarizing information in legible format
+        //console.log(`order id: ${orderInfo.id}`);
         return <CustomerOrder>{
           id: orderInfo.id,
           orderNumber: orderInfo.orderNumber,

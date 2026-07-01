@@ -1,5 +1,7 @@
 <mat-card class="order-list-item" appearance="outlined">
     <mat-card-header>
+      <p>{{ orderId }}</p>
+
         <mat-card-title class="title-order-date">{{ orderDate | date:'MMMM dd, yyyy' }}</mat-card-title>
         <mat-card-subtitle class="title-order-number">#{{orderNumber}}</mat-card-subtitle>
         <p class="order-item-total">Total {{ totalPrice | currency }}</p>
@@ -20,7 +22,7 @@
         </div>
         <div class="order-item-actions">
             <button mat-button class="btn-action-reorder">Reordenar</button>
-            <button mat-button class="btn-action-details">Detalles</button>
+            <button (click)="btnDetailsClick($event, orderId)" mat-button class="btn-action-details">Detalles</button>
         </div>
     </mat-card-content>
 </mat-card>
