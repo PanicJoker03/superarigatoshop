@@ -48,22 +48,3 @@ https://admin.shopify.com/store/superarigatodev/headless/253050/storefront_api
 
 deployed automatically when commiting to main
 
-## TODO
-
-* replace https://superarigatodev.myshopify.com/cart with published site 
-* create mocks
-* tests cases with cypress
-* fallback image 404
-* link superarigato.com to Angular
-* manage user accounts with shopify UI redirection
-* link store.superarigato.com to shopify
-* change shopify theme to redirect to superarigato.com
-* Prioridad B > minijuego de super arigato pasar, retencion de cliente 
-* Prioridad B > app de super arigato poo
-* publish on Aegis Hyper dedicated mx server 
-* console service
-
-* Prioridad A > Subir productos, pedir a angel, amablemente
-
-Voz de super arigato.\
-HICISTE PUSH!

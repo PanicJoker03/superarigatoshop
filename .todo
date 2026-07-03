@@ -1,0 +1,35 @@
+## TODO
+
+* Prioridad A:
+* Hacer responsivo con BreakpointObserver
+    -> https://material.angular.dev/cdk/layout/overview
+    -> cambiar (page-body-wrapper, quitar width 800px)
+    -> cambiar .shopy-title font-size: 1.5rem
+    -> agregar menu hamburguesa
+    -> redes sociales arriba, en misma row que logo
+    -> ver otros sitios responsivos
+    -> cambiar estilo chatbot, volver burbuja
+* agregar buscador
+------------------------
+banner super arigato shop, asi que se quede
+Menu merch artistas
+
+arte carga acuarelas ---> art toy
+
+personalizados: envio a contacto disenio, de tazas, microfibra,
+mousepads, exhibicion.
+
+Seleccion de tipo de producto, imagen, fotografia.
+--------------------------
+ej, promo
+lunes, micro fibras en oferta.
+------------------------
+* create mocks
+* tests cases with cypress
+* fallback image 404
+* manage user accounts with shopify UI redirection
+* change shopify theme to redirect to superarigato.com
+* Prioridad B > minijuego de super arigato pasar, retencion de cliente
+* Prioridad B > app de super arigato poo
+* console service
+
