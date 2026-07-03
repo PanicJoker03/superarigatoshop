@@ -1,0 +1,83 @@
+div.orders-details-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+div.orders-details-header h2.header-my-details {
+  color: var(--arigato-orange);
+  font-weight: bold;
+}
+
+div.order-info-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 2rem;
+}
+
+p.order-fulfillment-date {
+  font-family: 'Paytone One', 'sans-serif';
+  font-size: xx-large;
+  margin: 0;
+}
+
+div.order-information h3.order-number {
+  color: gray;
+}
+
+div.order-summary {
+  display: flex;
+  gap: 1rem;
+}
+
+div.order-summary-item {
+  display: flex;
+  gap: 1rem;
+}
+
+div.order-summary div.line-br {
+  background-color: var(--arigato-black);
+  height: 1px;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+img.order-detail-img {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 0.5rem;
+  border-style: solid;
+  border-color: var(--arigato-black);
+  border-width: 1px;
+}
+
+.order-detail-card {
+  flex-grow: 1;
+  background-color: var(--arigato-white);
+  border-color: var(--arigato-red);
+}
+
+.order-line-price {
+  font-weight: bold;
+}
+
+.order-detail-card-header {
+  display: flex;
+  align-items: center;
+}
+
+.order-detail-card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.order-detail-card-header * {
+  font-family: 'Paytone One', 'sans-serif';
+}
+
+.order-detail-total-amount {
+  font-size: xx-large;
+}

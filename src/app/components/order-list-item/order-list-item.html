@@ -1,10 +1,8 @@
 <mat-card class="order-list-item" appearance="outlined">
     <mat-card-header>
-      <p>{{ orderId }}</p>
-
         <mat-card-title class="title-order-date">{{ orderDate | date:'MMMM dd, yyyy' }}</mat-card-title>
         <mat-card-subtitle class="title-order-number">#{{orderNumber}}</mat-card-subtitle>
-        <p class="order-item-total">Total {{ totalPrice | currency }}</p>
+        <p class="order-item-total">Total ${{ totalPrice.toFixed(2).toString() }}</p>
     </mat-card-header>
     <mat-card-content>
         <img 

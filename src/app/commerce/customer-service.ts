@@ -63,6 +63,7 @@ export interface CustomerActivateInput {
 
 // }
 
+//used on order list
 export interface CustomerOrder {
   id: string,
   orderNumber: number,
@@ -80,8 +81,29 @@ export interface CustomerOrderLine {
   quantity: number,
   title: string,
   variantId:string,
+  price?: {
+    amount: number,
+    currencyCode: string
+  }
   productImageUrl: string
 }
+
+//used on order details screen
+export interface CustomerOrderDetail {
+  order: CustomerOrder;
+  lines: CustomerOrderLine[];
+}
+
+
+/*
+export interface CustomerOrderDetailLine {
+
+  title: string;
+  quantity: number;
+  variantId: string;
+  productImageUrl: string;
+}
+ */
 
 //graphql calls 
 const CREATE_CUSTOMER_MUTATION = gql`
@@ -269,6 +291,43 @@ const GET_CUSTOMER_ORDERS = gql
   }
 }`;
 
+const GET_CUSTOMER_ORDER_QUERY = gql`
+  query getCustomerOrder($orderGid: ID!) {
+    node(id: $orderGid) {
+      ... on Order {
+        id
+        name
+        processedAt
+        totalPriceV2 {
+          amount
+          currencyCode
+        }
+        financialStatus
+        fulfillmentStatus
+        lineItems(first: 20) {
+          edges {
+            node {
+              title
+              quantity
+              variant {
+                id
+                priceV2 {
+                  amount
+                  currencyCode
+                }
+                image {
+                  url
+                  altText
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 @Injectable({
   providedIn: 'root',
 })
@@ -353,6 +412,58 @@ export class CustomerService {
         };
       });
       return orders;
+    }));
+  }
+
+  getCustomerOrder(orderGid:string):Observable<CustomerOrderDetail>{
+    return this.apollo.query({
+      query: GET_CUSTOMER_ORDER_QUERY,
+      variables: {
+        orderGid: orderGid
+      }
+    }).pipe(map((response:any)=>{
+      console.log("Store front response:" , response);
+      const orderNode = response.data.node;
+      //transformation, get order data
+      const order: CustomerOrder = {
+        id: orderNode.id,
+        orderNumber: orderNode.name.replace('#', ''),
+        processedAt: orderNode.processedAt,
+        shipmentStatus: orderNode.fulfillmentStatus,
+        orderSummary: '',
+        totalPrice: {
+          amount: Number.parseFloat(orderNode.totalPriceV2.amount),
+          currencyCode: orderNode.totalPriceV2.currencyCode,
+        },
+        productImageUrl: "",
+      };
+
+      //reduce orders lines to readable format...
+      const orderLines: CustomerOrderLine[] = orderNode.lineItems.edges
+        .reduce((accum:any, current:any)=>{
+          console.log("procesando linea", current)
+          const variant = current.node.variant;
+          const orderLine: CustomerOrderLine = <CustomerOrderLine>{
+            quantity: current.node.quantity,
+            title: current.node.title,
+            variantId: variant ? variant.id : '', //consider null variant case
+            productImageUrl: variant ? variant.image.url : 'img/item-unavalaible.png', //consider null variant case
+            price: variant ? {
+                  amount: variant.priceV2.amount,
+                  currencyCode: variant.priceV2.currencyCode,
+                } : {
+                amount: "NO DISPONIBLE",
+              currencyCode: "$",
+              },
+          };
+          accum.push(orderLine);
+          return accum;
+        }, []);
+      //debugger;
+      return <CustomerOrderDetail>{
+        order: order,
+        lines: orderLines
+      };
     }));
   }
 }

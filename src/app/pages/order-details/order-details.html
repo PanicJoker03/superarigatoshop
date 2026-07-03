@@ -1,1 +1,52 @@
-<p>order-details works!</p>
+<link rel="stylesheet" href="order-details.scss">
+<div class="orders-details-header">
+  <h1>Mis Órdenes</h1> <span> > </span> <h2 class="header-my-details">Detalle de mi orden</h2>
+</div>
+
+<div class="orders-details-body">
+  <div class="order-information">
+    <div class="order-info-header">
+      <p class="order-fulfillment-date">{{customerOrder()?.processedAt | date: 'MMMM dd, yyyy'}}</p>
+      <div [ngClass]="orderFulfillmentCss(orderStatus())" class="order-item-information">
+        <mat-chip-set>
+          <mat-chip>{{ orderStatus() }}</mat-chip>
+        </mat-chip-set>
+      </div>
+    </div>
+    <div>
+      <h3 class="order-number">ORDEN #{{ customerOrder()?.orderNumber }}</h3>
+    </div>
+  </div>
+  <div class="order-summary">
+    <mat-card class="order-detail-card" appearance="outlined">
+      <mat-card-content>
+        @for (line of customerOrderLines(); track line.variantId) {
+          <div class="order-summary-item">
+            <img class="order-detail-img" [src]="line.productImageUrl">
+            <div>
+              <h3>{{ line.title }}</h3>
+              <p>Pza: {{ line.quantity }}</p>
+              <p class="order-line-price">Precio: {{line.price?.currencyCode}} {{ line.price?.amount }}</p>
+            </div>
+          </div>
+          <div class="line-br"></div>
+        }
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="order-detail-card" appearance="outlined">
+      <mat-card-header class="order-detail-card-header">
+        <mat-card-title class="order-detail-total">Total</mat-card-title>
+        <mat-card-subtitle class="order-detail-total-amount">$ {{ customerOrder()?.totalPrice?.amount?.toFixed(2)?.toString() }}</mat-card-subtitle>
+      </mat-card-header>
+      <div class="line-br"></div>
+      <mat-card-content>
+        <h4>Resumen del pedido</h4>
+        <div>
+          <p>Productos:</p>
+          <p></p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
