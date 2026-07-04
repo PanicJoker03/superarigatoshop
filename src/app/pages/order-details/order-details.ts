@@ -34,10 +34,10 @@ export class OrderDetails {
   ngOnInit() {
     //#begin# try to retrieve Customer
     if (isPlatformBrowser(this.platformId)) {
-      this.activateRoute.paramMap.subscribe((paramMap) => {
+      this.activateRoute.queryParamMap.subscribe((paramMap) => {
         console.log('Route parameters changed');
         console.log(paramMap);
-        let orderEncoded: string | null = paramMap.get('order-id');
+        let orderEncoded: string | null = paramMap.get('orderId');
         this.orderId.set(atob(orderEncoded!));
         //debugger
         console.log(this.orderId);

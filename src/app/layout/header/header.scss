@@ -30,6 +30,18 @@
     cursor: default;
 }
 
+@media screen and (max-width: 650px) {
+    .shopy-title {
+        font-size: 1.5rem;
+    }
+    .shopy-header-icon {
+        display: none;
+    }
+    div.social-media-bar {
+        display: none;
+    }
+}
+
 .shopy-title span { 
     display: inline-flex;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;

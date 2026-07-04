@@ -32,8 +32,14 @@ export class OrderListItem {
     console.log(`OrderId: ${orderId}`);
     console.log('Encoding order id...');
     const encodedGid = btoa(this.orderId);
-    this.router.navigate([`/pages/orders-details/${encodedGid}`]).then(()=>{
-      console.log("Ok");
+    this.router
+      .navigate([`/pages/orders-details/`], {
+        queryParams: {
+          orderId: encodedGid
+        }
+      })
+      .then(() => {
+      console.log('Ok');
     });
   }
 

@@ -6,6 +6,13 @@
   padding-top: 1rem;
 }
 
+@media screen and (max-width: 650px) {
+  .product-grid {
+    display:flex;
+    flex-direction: column;
+  }
+}
+
 .product-grid > app-product-grid-item {
   display: block;
 }
