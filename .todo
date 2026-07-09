@@ -3,13 +3,14 @@
 * Prioridad A:
 * Hacer responsivo con BreakpointObserver
     -> https://material.angular.dev/cdk/layout/overview
-    -> cambiar (page-body-wrapper, quitar width 800px)
+    -> ok, cambiar (page-body-wrapper, quitar width 800px)
     -> cambiar .shopy-title font-size: 1.5rem
     -> agregar menu hamburguesa
     -> redes sociales arriba, en misma row que logo
     -> ver otros sitios responsivos
     -> cambiar estilo chatbot, volver burbuja
 * agregar buscador
+* agregar boton start shoping en ordenes de compra vacias
 ------------------------
 banner super arigato shop, asi que se quede
 Menu merch artistas
