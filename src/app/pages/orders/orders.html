@@ -1,6 +1,21 @@
-<h1>Mis Órdenes</h1>
-@for (order of customerOrders(); track $index) {
-    <app-order-list-item
+<h1 class=my-orders-header>Mis Órdenes</h1>
+
+  @if (customerOrders().length == 0){
+    <div class="container">
+      <img class="img-empty-orders" src="/img/empty-orders.png" alt="Ups... You had no orders yet">
+      <button
+        class="btn-empty-orders-start-shopping"
+        mat-button
+        matButton="filled"
+        (click)="btnStartShoppingClick($event)">
+          Start Shopping
+          <mat-icon>shopping-cart</mat-icon>
+      </button>
+    </div>
+  }
+  @else {
+    @for (order of customerOrders(); track $index) {
+      <app-order-list-item
         [orderId]="order.id"
         [orderNumber]="order.orderNumber.toString()"
         [imageUrl]="order.productImageUrl"
@@ -8,7 +23,8 @@
         [orderDate]="order.processedAt"
         [productSummary]="order.orderSummary"
         [totalPrice]="order.totalPrice.amount"
-        >
-    </app-order-list-item>
-    <br>
-}
+      >
+      </app-order-list-item>
+      <br>
+    }
+  }

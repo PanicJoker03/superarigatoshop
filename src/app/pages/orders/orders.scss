@@ -1,0 +1,30 @@
+h1.my-orders-header{
+  user-select: none;
+  margin-left: 1rem;
+  padding-top: 1rem;
+  font-weight: bold;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-empty-orders {
+  flex-grow: 1;
+  width: 50%;
+}
+
+@media screen and (max-width: 650px) {
+  .img-empty-orders {
+    flex-grow: 1;
+    width: 100%;
+  }
+}
+
+button.btn-empty-orders-start-shopping {
+  background-color: var(--arigato-red);
+}
