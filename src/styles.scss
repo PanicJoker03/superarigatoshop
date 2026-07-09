@@ -12,6 +12,20 @@
   --arigato-yellow: #FFD000;
   --arigato-white: #FFFFFF;
   --arigato-black: #000000;
+
+  @include mat.menu-overrides((
+          container-color: var(--arigato-blue),
+          item-label-text-color: var(--arigato-white),
+  ));
+}
+
+@font-face {
+  font-family: 'Paytone One';
+  src: url("/font/PaytoneOne-Regular.ttf");
+}
+@font-face {
+  font-family: 'Inter';
+  src: url("/font/Inter-Regular.ttf");
 }
 
 html {
@@ -45,5 +59,3 @@ body {
   margin: 0;
   height: 100%;
 }
-/* You can add global styles to this file, and also import other style files */
-/* https://material.angular.dev/components/button/overview */

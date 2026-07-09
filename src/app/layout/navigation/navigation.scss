@@ -1,3 +1,4 @@
+
 .shopy-navigation {
     background-color: var(--arigato-blue);
     color: white;
@@ -10,6 +11,10 @@
 
 .shopy-navigation ul {
     margin:auto;
+}
+
+.shopy-navigation .navbar-mat-menu {
+    background-color: var(--arigato-blue);
 }
 
 .shopy-navigation ul li.navbar-item {

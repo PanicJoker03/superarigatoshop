@@ -4,7 +4,7 @@
             <li class="navbar-item">
                 <a routerLink="/">Inicio</a>
                 <button class="navbar-item-dropdown" matButton [matMenuTriggerFor]="menu">Productos</button>
-                <mat-menu #menu="matMenu">
+                <mat-menu #menu="matMenu" class="navbar-mat-menu">
                     <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'mouse-pads' }">Mouse Pads</button>
                     <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'cup-holder' }">Posavasos</button>
                     <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'tars' }">Tazas</button>
