@@ -73,6 +73,10 @@ mat-card-content .detail-thumbnail {
     color: var(--arigato-red);
 }
 
+mat-chip {
+    width: 8rem;
+}
+
 .status-fulfilled .mat-mdc-standard-chip {
     background-color: #8dffac;
 }

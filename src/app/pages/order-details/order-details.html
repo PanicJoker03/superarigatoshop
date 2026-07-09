@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="order-details.scss">
 <div class="orders-details-header">
-  <h1>Mis Órdenes</h1> <span> > </span> <h2 class="header-my-details">Detalle de mi orden</h2>
+  <h1 class="my-orders-header" (click)="redirectToOrdersPage()">Mis Órdenes</h1> <span> > </span> <h2 class="header-my-details">Detalle de mi orden</h2>
 </div>
 
 <div class="orders-details-body">
@@ -9,12 +9,15 @@
       <p class="order-fulfillment-date">{{customerOrder()?.processedAt | date: 'MMMM dd, yyyy'}}</p>
       <div [ngClass]="orderFulfillmentCss(orderStatus())" class="order-item-information">
         <mat-chip-set>
-          <mat-chip>{{ orderStatus() }}</mat-chip>
+          <mat-chip>
+            {{ orderFulfillmentTraduction(orderStatus()!) }}
+            <mat-icon matChipTrailingIcon>inventory_2</mat-icon>
+          </mat-chip>
         </mat-chip-set>
       </div>
     </div>
     <div>
-      <h3 class="order-number">ORDEN #{{ customerOrder()?.orderNumber }}</h3>
+      <h3 class="order-number">ÓRDEN #{{ customerOrder()?.orderNumber }}</h3>
     </div>
   </div>
   <div class="order-summary">

@@ -1,12 +1,14 @@
 import { Component, inject, PLATFORM_ID, signal } from '@angular/core';
-import { MatChip, MatChipSet } from '@angular/material/chips';
+import { MatChip, MatChipSet, MatChipsModule } from '@angular/material/chips';
 import { CurrencyPipe, DatePipe, isPlatformBrowser, NgClass } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerOrder, CustomerOrderLine, CustomerService } from '../../commerce/customer-service';
 import { MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle } from '@angular/material/card';
+import { MatIcon } from '@angular/material/icon';
 @Component({
   selector: 'app-order-details',
   imports: [
+    MatChipsModule,
     MatChipSet,
     MatChip,
     NgClass,
@@ -17,12 +19,14 @@ import { MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle }
     MatCardHeader,
     MatCardTitle,
     MatCardSubtitle,
+    MatIcon,
   ],
   templateUrl: './order-details.html',
   styleUrl: './order-details.scss',
 })
 export class OrderDetails {
   //todo: decode gid param with atob... read parameter...
+  private router: Router = inject(Router);
   private activateRoute = inject(ActivatedRoute);
   private customerService = inject(CustomerService);
   private platformId = inject(PLATFORM_ID);
@@ -58,7 +62,7 @@ export class OrderDetails {
       this.customerOrder.set(customerOrder.order);
       this.customerOrderLines.set(customerOrder.lines);
       // fill status
-      this.orderStatus.set(this.orderFulfillmentTraduction(this.customerOrder()?.shipmentStatus!));
+      this.orderStatus.set(this.customerOrder()?.shipmentStatus!);
     });
   }
 
@@ -66,7 +70,7 @@ export class OrderDetails {
     return `status-${shopifyStatus.replace('_', '-').toLowerCase()}`;
   }
 
-  private orderFulfillmentTraduction(status: string): string {
+  protected orderFulfillmentTraduction(status: string): string {
     //Simplificando el status de shopify,
     //para que los clientes vean un status mas ameno,
     //escudando la tienda....
@@ -87,5 +91,11 @@ export class OrderDetails {
       default:
         throw 'Bad status';
     }
+  }
+
+  protected redirectToOrdersPage(): void {
+    this.router.navigate(['pages/orders']).then(() => {
+      console.log('navigate to orders page');
+    });
   }
 }
