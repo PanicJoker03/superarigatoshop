@@ -23,7 +23,12 @@
                 </li>            
                 <li class="li-orders">
                     <a routerLink="/pages/orders"><img src="img/orders-icon.svg" class="buyer-section-icon">Órdenes</a>
-                </li>            
+                </li>
+              <li class="li-orders">
+                <button class="buyer-section-icon">
+                  <img class="icon" ngSrc="{{sessionIcon()}}" (click)="onBtnSessionClick($event)">
+                </button>
+              </li>
             </div>
         </ul>
     </div>

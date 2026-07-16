@@ -28,6 +28,7 @@ import {
   MatDialogRef,
   MatDialogTitle
 } from '@angular/material/dialog';
+import { SessionService } from '../../services/session-service';
 
 @Component({
   selector: 'app-signin',  
@@ -64,6 +65,7 @@ export class Signin {
   customer = inject(CustomerService);
   dialog = inject(MatDialog);
   router = inject(Router);
+  session = inject(SessionService);
 
   constructor(){
     merge(this.emailControl.statusChanges, this.emailControl.valueChanges)
@@ -206,12 +208,11 @@ export class Signin {
               .customerAccessTokenCreate
               .customerAccessToken
               .accessToken;
-            
-            localStorage.setItem("customerAccessToken", accessToken);
+
+            this.session.login(accessToken);
 
             //redirect to home ... 
             this.router.navigate(['/']);
-
           }
         else {
           console.log('problem generating token');
