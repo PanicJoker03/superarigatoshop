@@ -1,14 +1,42 @@
 .page-body-wrapper {
   width: 800px;
   margin: 0 auto;
+  background-color: var(--arigato-white);
+}
+
+.sidenav-container {
+  background-color: var(--arigato-blue);
+}
+
+.side-navigation {
+  background-color: var(--arigato-blue);
+  border-radius: 0;
+  position: fixed;
+  top: 3.5rem;
+  height: 100vh;
 }
 
 @media screen and (max-width: 650px) {
+  .mat-sidenav-content {
+    background-color: var(--arigato-white);
+  }
+
   .page-body-wrapper {
     width: 100%;
   }
 
-  .navigation{
+  .navigation {
     display:none;
+  }
+
+  .sidenav-container .navbar-item-link {
+    color: var(--arigato-white);
+    font-family: 'Paytone One', sans-serif;
+    transition: 0.5s;
+    margin-left: 2rem;
+    text-decoration: none;
+  }
+  .sidenav-container .navbar-personalizados {
+    display: none;
   }
 }

@@ -1,10 +1,71 @@
 .shopy-navigation-mobile {
   padding: 0.5rem;
   background-color: var(--arigato-blue);
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+}
+
+.mat-toolbar {
+  background-color: var(--arigato-blue);
 }
 
 .btn-menu-icon {
   background-color: var(--arigato-yellow);
   color: var(--arigato-white);
   border-radius: 0.5rem;
+
+}
+
+.shopy-navigation-mobile .buyer-section {
+  background-color: white;
+  border-radius: 2rem;
+  color: var(--arigato-blue);
+  display: flex;
+}
+
+.shopy-navigation-mobile .buyer-section ul {
+  margin: 0.5rem 0.5rem 0.5rem 0;
+}
+
+.shopy-navigation-mobile .buyer-section .buyer-section-icon {
+  width: 1rem;
+  padding-right: 0.5rem;
+  margin-left: 0.5rem;
+  border: none;
+}
+
+.shopy-navigation-mobile .buyer-section .li-orders button.buyer-section-icon {
+  width: 1rem;
+  padding-top: 0.1rem;
+  padding-left: 0;
+  padding-right: 0.5rem;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.shopy-navigation-mobile .buyer-section .buyer-section-icon img.icon {
+  width: 1rem;
+}
+
+.shopy-navigation-mobile .buyer-section .li-orders {
+  margin-left: 1rem;
+  padding-right: 0.5rem;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  justify-content: space-around;
+}
+
+li a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }

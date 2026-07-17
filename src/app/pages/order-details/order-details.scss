@@ -123,3 +123,22 @@ mat-chip {
 {
   background-color: #ffb778;
 }
+
+@media screen and (max-width: 650px){
+  .orders-details-body .order-information {
+    margin: 1rem;
+  }
+
+  .orders-details-header {
+    flex-direction: column;
+  }
+
+  .orders-details-header span {
+    display: none;
+  }
+
+  .order-summary {
+    flex-direction: column;
+    padding: 0 1rem 1rem 1rem;
+  }
+}

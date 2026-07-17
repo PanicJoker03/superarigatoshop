@@ -29,7 +29,6 @@
 }
 
 html {
-  height: 100%;
   @include mat.theme(
     (
       color: (
@@ -57,5 +56,4 @@ body {
 
   // Reset the user agent margin.
   margin: 0;
-  height: 100%;
 }

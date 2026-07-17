@@ -147,3 +147,23 @@ mat-form-field {
 img.super-arigato-hero{
     width: 80%;
 }
+
+@media screen and (max-width: 650px){
+  .sign-in-wrapper{
+    flex-direction: column;
+    align-items: inherit;
+  }
+
+  img.super-arigato-hero{
+    width: 10%;
+    border-radius: 100rem;
+    border-style: solid;
+    border-color: var(--arigato-red);
+    border-width: 1px;
+    aspect-ratio: 1;
+  }
+
+  .separator {
+    display: none;
+  }
+}

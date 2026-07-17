@@ -1,8 +1,3 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->
-
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
   :host {
@@ -17,7 +12,6 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     display: block;
-    height: 100dvh;
   }
 
   h1 {
@@ -39,7 +33,6 @@
 
   main {
     width: 100%;
-    min-height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,20 +69,54 @@
     }
   }
 </style>
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
 <app-header></app-header>
 
 @if (isReady()){
   @if (deviceViewMode() == DeviceViewMode.Mobile) {
-    <app-navigation-mobile></app-navigation-mobile>
+    <app-navigation-mobile (menuToggled)="sideNavToggle()" class="navigation-mobile"></app-navigation-mobile>
+    <mat-sidenav-container class="sidenav-container">
+      <mat-sidenav #sidenav class="side-navigation" mode="side" [(opened)]="sidenavOpened">
+        <mat-list>
+          <mat-list-item></mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <a class="navbar-item-link" routerLink="/" >Inicio</a>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <a class="navbar-item-link" routerLink="/" [queryParams]="{ collectionHandle: 'plush' }">Peluches</a>
+          </mat-list-item>
+          <div class="navbar-personalizados">
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              <a class="navbar-item-link" routerLink="/" >Personalizados</a>
+            </mat-list-item>
+          </div>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <a class="navbar-item-link" routerLink="/" [queryParams]="{ collectionHandle: 'cup-holder' }">Posavasos</a>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <a class="navbar-item-link" routerLink="/" [queryParams]="{ collectionHandle: 'mouse-pads' }">Mouse Pads</a>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <a class="navbar-item-link" routerLink="/" [queryParams]="{ collectionHandle: 'microfiber' }">Microfibras</a>
+          </mat-list-item>
+        </mat-list>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <div class="page-body-wrapper">
+          <router-outlet></router-outlet>
+        </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
   }
   @else if (deviceViewMode() == DeviceViewMode.Web) {
     <app-navigation [ngClass]="'navigation'" [class.show]="deviceViewMode() === DeviceViewMode.Web"></app-navigation>
+    <div class="page-body-wrapper">
+      <router-outlet></router-outlet>
+    </div>
   }
 }
-<div class="page-body-wrapper">
-  <router-outlet></router-outlet>
-</div>

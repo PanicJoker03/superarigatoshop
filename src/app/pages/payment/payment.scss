@@ -170,3 +170,18 @@ mat-card-header .total-summary {
 mat-card button img.button-icon {
     width: 1rem;
 }
+
+@media screen and (max-width: 650px){
+    .checkout-payment-wrapper {
+        flex-direction: column;
+        align-items: inherit;
+    }
+
+    .checkout-payment-method {
+        display: none;
+    }
+
+    .separator {
+        display: none;
+    }
+}

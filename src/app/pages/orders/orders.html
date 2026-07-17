@@ -14,17 +14,19 @@
     </div>
   }
   @else {
-    @for (order of customerOrders(); track $index) {
-      <app-order-list-item
-        [orderId]="order.id"
-        [orderNumber]="order.orderNumber.toString()"
-        [imageUrl]="order.productImageUrl"
-        [orderStatus]="order.shipmentStatus"
-        [orderDate]="order.processedAt"
-        [productSummary]="order.orderSummary"
-        [totalPrice]="order.totalPrice.amount"
-      >
-      </app-order-list-item>
-      <br>
-    }
+    <div class="orders-container">
+      @for (order of customerOrders(); track $index) {
+        <app-order-list-item
+          [orderId]="order.id"
+          [orderNumber]="order.orderNumber.toString()"
+          [imageUrl]="order.productImageUrl"
+          [orderStatus]="order.shipmentStatus"
+          [orderDate]="order.processedAt"
+          [productSummary]="order.orderSummary"
+          [totalPrice]="order.totalPrice.amount"
+        >
+        </app-order-list-item>
+        <br>
+      }
+    </div>
   }

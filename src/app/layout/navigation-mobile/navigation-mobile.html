@@ -1,12 +1,25 @@
+<script src="../../app.ts"></script>
 <div class="shopy-navigation-mobile">
-  <mat-toolbar-row>
-    <button matIconButton class="btn-menu-icon" aria-label="tooblar">
+  <mat-toolbar>
+    <button matIconButton class="btn-menu-icon" aria-label="tooblar" (click)="btnMenuClicked($event)">
       <mat-icon>menu</mat-icon>
     </button>
     <span class="spacer"></span>
     <div class="buyer-section">
-
+      <ul>
+        <li class="li-shop-cart">
+          <img src="img/cart-icon.svg" class="buyer-section-icon">
+        </li>
+        <li class="li-orders">
+          <a routerLink="/pages/orders"><img src="img/orders-icon.svg" class="buyer-section-icon"></a>
+        </li>
+        <li class="li-orders">
+          <button class="buyer-section-icon">
+            <img class="icon" ngSrc="{{sessionIcon()}}" (click)="onBtnSessionClick($event)">
+          </button>
+        </li>
+      </ul>
     </div>
-  </mat-toolbar-row>
+  </mat-toolbar>
 </div>
 
