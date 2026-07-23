@@ -11,6 +11,7 @@ import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/mat
 import { filter } from 'rxjs/operators';
 import { MatDivider, MatList, MatListItem } from '@angular/material/list';
 import { MatMenuItem } from '@angular/material/menu';
+import { SwapDirective } from './shared/swap-directive';
 
 enum DeviceViewMode {
   Mobile = 'mobile',
@@ -33,6 +34,7 @@ enum DeviceViewMode {
     MatDivider,
     MatMenuItem,
     RouterLink,
+    SwapDirective,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
@@ -81,6 +83,12 @@ export class App {
   }
 
   ngAfterViewInit() {}
+
+  onSwapeLeftSideNav() {
+    this.sidenavOpened.set(false);
+  }
+
+  onSwipeRightSideNav(){}
 
   protected readonly DeviceViewMode = DeviceViewMode;
 }

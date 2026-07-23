@@ -75,7 +75,13 @@
   @if (deviceViewMode() == DeviceViewMode.Mobile) {
     <app-navigation-mobile (menuToggled)="sideNavToggle()" class="navigation-mobile"></app-navigation-mobile>
     <mat-sidenav-container class="sidenav-container">
-      <mat-sidenav #sidenav class="side-navigation" mode="side" [(opened)]="sidenavOpened">
+      <mat-sidenav ElementSwap #sidenav
+                   class="side-navigation"
+                   mode="side"
+                   [(opened)]="sidenavOpened"
+                   (swipeLeft)="onSwapeLeftSideNav()"
+                   (swipeRight)="onSwipeRightSideNav()"
+      >
         <mat-list>
           <mat-list-item></mat-list-item>
           <mat-divider></mat-divider>
