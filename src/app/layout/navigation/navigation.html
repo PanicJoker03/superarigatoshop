@@ -1,35 +1,115 @@
 <nav class="shopy-navigation">
-    <div class="shopy-navigation-wrapper">
-        <ul class="navbar-ulist">
-            <li class="navbar-item">
-                <a routerLink="/">Inicio</a>
-                <button class="navbar-item-dropdown" matButton [matMenuTriggerFor]="menu">Productos</button>
-                <mat-menu #menu="matMenu" class="navbar-mat-menu">
-                    <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'mouse-pads' }">Mouse Pads</button>
-                    <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'cup-holder' }">Posavasos</button>
-                    <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'tars' }">Tazas</button>
-                    <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'plush' }">Peluches</button>
-                    <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'microfiber' }">Microfibras</button>
-                </mat-menu>
-                <a class="navbar-item-link" routerLink="/" hidden>Personalizados</a>
-                <a class="navbar-item-link" routerLink="/">Blog</a>
-                <a class="navbar-item-link" routerLink="/" hidden>Club</a>
-            </li>
-            <li class="navbar-item"></li>
-            <div class="buyer-section">
-                <li class="li-shop-cart">
-                    <img src="img/cart-icon.svg" class="buyer-section-icon">
-                    Carrito
-                </li>            
-                <li class="li-orders">
-                    <a routerLink="/pages/orders"><img src="img/orders-icon.svg" class="buyer-section-icon">Órdenes</a>
-                </li>
-              <li class="li-orders">
-                <button class="buyer-section-icon">
-                  <img class="icon" ngSrc="{{sessionIcon()}}" (click)="onBtnSessionClick($event)">
-                </button>
-              </li>
-            </div>
-        </ul>
-    </div>
+  <div class="shopy-navigation-wrapper">
+    <ul class="navbar-ulist">
+      <li class="navbar-item">
+        <a routerLink="/">Inicio</a>
+
+        <button class="navbar-item-dropdown" matButton [matMenuTriggerFor]="menusuperarigato">Super Arigato</button>
+        <mat-menu #menusuperarigato="matMenu" class="navbar-mat-menu">
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'original-merch' }">
+            Merch Original
+          </button>
+          <button mat-menu-item [matMenuTriggerFor]="menusuperarigatopersonajes">
+            Personajes
+          </button>
+        </mat-menu>
+
+        <mat-menu #menusuperarigatopersonajes="matMenu" class="navbar-mat-menu">
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'Futarigato' }">
+            Futarigato
+          </button>
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'Super Arigato' }">
+            Super Arigato
+          </button>
+        </mat-menu>
+
+        <button class="navbar-item-dropdown" matButton [matMenuTriggerFor]="menuservices">Servicios</button>
+        <mat-menu #menuservices="matMenu" class="navbar-mat-menu">
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'mouse-pads' }">
+            Mouse Pads
+          </button>
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'sublimation' }">
+            Sublimación
+          </button>
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'tars' }">
+            Tazas
+          </button>
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'pins' }">
+            Pins
+          </button>
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'stickers' }">
+            Stickers
+          </button>
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'microfiber' }">
+            Microfibras
+          </button>
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'prints' }">
+            Prints
+          </button>
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'magnets' }">
+            Imanes
+          </button>
+          <button
+            mat-menu-item
+            routerLink="/"
+            [queryParams]="{ collectionHandle: 'advertisement' }"
+          >
+            Publicidad
+          </button>
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: '3d' }">
+            3D
+          </button>
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'mouse-pads' }">
+            Mouse Pads
+          </button>
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'cup-holder' }">
+            Posavasos
+          </button>
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'plush' }">
+            Peluches
+          </button>
+        </mat-menu>
+
+        <button class="navbar-item-dropdown" matButton [matMenuTriggerFor]="menubazarbizarro">Bazar Bizarro</button>
+        <mat-menu #menubazarbizarro="matMenu" class="navbar-mat-menu">
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'bizarre-shop-figure' }">
+            Figuras y Chachara
+          </button>
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'bizarre-shop-pau-leo' }">
+            Pau y Leo
+          </button>
+        </mat-menu>
+
+        <button class="navbar-item-dropdown" matButton [matMenuTriggerFor]="menuenvios">Envíos</button>
+        <mat-menu #menuenvios="matMenu" class="navbar-mat-menu">
+          <button mat-menu-item routerLink="/mensajeria-local">Mensajería Local</button>
+          <button mat-menu-item routerLink="/mensajeria-nacional">Mensajería Nacional</button>
+        </mat-menu>
+
+        <a class="navbar-item-link" routerLink="/" hidden>Personalizados</a>
+        <button class="navbar-item-dropdown" matButton [matMenuTriggerFor]="menublog">Blog</button>
+        <mat-menu #menublog="matMenu" class="navbar-mat-menu">
+          <button mat-menu-item routerLink="/blog">Nuevo Super Arigato</button>
+        </mat-menu>
+        <a class="navbar-item-link" routerLink="/" hidden>Club</a>
+      </li>
+      <li class="navbar-item"></li>
+      <div class="buyer-section">
+        <li class="li-shop-cart">
+          <img src="img/cart-icon.svg" class="buyer-section-icon" />
+          Carrito
+        </li>
+        <li class="li-orders">
+          <a routerLink="/pages/orders"
+            ><img src="img/orders-icon.svg" class="buyer-section-icon" />Órdenes</a
+          >
+        </li>
+        <li class="li-orders">
+          <button class="buyer-section-icon">
+            <img class="icon" ngSrc="{{ sessionIcon() }}" (click)="onBtnSessionClick($event)" />
+          </button>
+        </li>
+      </div>
+    </ul>
+  </div>
 </nav>
