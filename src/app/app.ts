@@ -9,9 +9,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NgClass } from '@angular/common';
 import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/material/sidenav';
 import { filter } from 'rxjs/operators';
-import { MatDivider, MatList, MatListItem } from '@angular/material/list';
+import { MatDivider, MatList, MatListItem, MatNavList } from '@angular/material/list';
 import { MatMenuItem } from '@angular/material/menu';
 import { SwapDirective } from './shared/swap-directive';
+import { MatIcon } from '@angular/material/icon';
 
 enum DeviceViewMode {
   Mobile = 'mobile',
@@ -35,6 +36,8 @@ enum DeviceViewMode {
     MatMenuItem,
     RouterLink,
     SwapDirective,
+    MatNavList,
+    MatIcon,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
@@ -66,7 +69,7 @@ export class App {
         //listen navigation to had some actions on side bar
         this.router.events.pipe(filter((e) => e instanceof NavigationStart)).subscribe((event) => {
           console.log('Navigation started, closing sidebar');
-          this.sidenavOpened.set(false);
+          this.collapseNavigation();
           //todo: test my changes
         });
       } else {
@@ -85,10 +88,46 @@ export class App {
   ngAfterViewInit() {}
 
   onSwapeLeftSideNav() {
-    this.sidenavOpened.set(false);
+    this.collapseNavigation();
   }
 
-  onSwipeRightSideNav(){}
+  onSwipeRightSideNav() {}
+
+  collapseNavigation(){
+    this.sidenavOpened.set(false);
+    this.menuSuperArigatoExpanded.set(false);
+    this.menuServiciosExpanded.set(false);
+    this.menuBazarBizarroExpanded.set(false);
+    this.menuEnviosExpanded.set(false);
+    this.menuBlogExpanded.set(false);
+  }
+
+  //#begin: mobile side nav menus
+  menuSuperArigatoExpanded = signal<boolean>(false);
+  toggleMenuSuperArigato(): void {
+    this.menuSuperArigatoExpanded.set(!this.menuSuperArigatoExpanded());
+  }
+
+  menuServiciosExpanded = signal<boolean>(false);
+  toggleMenuServicios(): void {
+    this.menuServiciosExpanded.set(!this.menuServiciosExpanded());
+  }
+
+  menuBazarBizarroExpanded = signal<boolean>(false);
+  toggleMenuBazarBizarro(): void {
+    this.menuBazarBizarroExpanded.set(!this.menuBazarBizarroExpanded());
+  }
+
+  menuEnviosExpanded = signal<boolean>(false);
+  toggleMenuEnvios(): void {
+    this.menuEnviosExpanded.set(!this.menuEnviosExpanded());
+  }
+
+  menuBlogExpanded = signal<boolean>(false);
+  toggleMenuBlog(): void {
+    this.menuBlogExpanded.set(!this.menuBlogExpanded());
+  }
+  //#end: mobile side nav menus
 
   protected readonly DeviceViewMode = DeviceViewMode;
 }
