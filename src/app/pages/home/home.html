@@ -1,15 +1,34 @@
-<div>
-  <img class="futarigato-banner" src="img/mundial-banner.png">
-</div>
+@if (collectionHandle() == null) {
+  <div>
+    <img class="futarigato-banner" src="img/mundial-banner.png">
+  </div>
+}
+
+<h1 class=home-header>{{ titleCollection() }}</h1>
+
 <div class="home-page">
-  <div class="product-grid">
-  @for (product of products(); track product.id) {
-      <app-product-grid-item
-        [productId]="product.id"
-        [imageUrl]="product.imageUrl"
-        [title]="product.title"
-        [price]="product.price">
-      </app-product-grid-item>
+  @if(products().length == 0) {
+    <div class="container">
+      <img class="img-empty-items" src="/img/no-items-found-here.png" alt="miau... no items">
+      <button
+        class="btn-empty-items-start-shopping"
+        mat-button
+        matButton="filled"
+        (click)="btnStartShoppingClick($event)">
+        Start Shopping
+        <mat-icon>shopping-cart</mat-icon>
+      </button>
+    </div>
+  } @else {
+    <div class="product-grid">
+      @for (product of products(); track product.id) {
+        <app-product-grid-item
+          [productId]="product.id"
+          [imageUrl]="product.imageUrl"
+          [title]="product.title"
+          [price]="product.price">
+        </app-product-grid-item>
+      }
+    </div>
   }
-  </div>  
 </div>  

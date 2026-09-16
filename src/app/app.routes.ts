@@ -19,6 +19,11 @@ export const routes: Routes = [
     path: 'pages/orders-details',
     loadComponent: () => import('./pages/order-details/order-details').then((m) => m.OrderDetails),
   },
+  {
+    path: 'pages/under-construction',
+    loadComponent: () =>
+      import('./pages/under-construction/under-construction').then((m) => m.UnderConstruction),
+  },
   { path: 'signin', loadComponent: () => import('./pages/signin/signin').then((m) => m.Signin) },
   { path: '**', redirectTo: '' },
 ];

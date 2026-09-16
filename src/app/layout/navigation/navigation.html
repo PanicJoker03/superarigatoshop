@@ -6,7 +6,7 @@
 
         <button class="navbar-item-dropdown" matButton [matMenuTriggerFor]="menusuperarigato">Super Arigato</button>
         <mat-menu #menusuperarigato="matMenu" class="navbar-mat-menu">
-          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'original-merch' }">
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'original-merch', titleCollection: 'Merch Original' }">
             Merch Original
           </button>
           <button mat-menu-item [matMenuTriggerFor]="menusuperarigatopersonajes">
@@ -15,81 +15,81 @@
         </mat-menu>
 
         <mat-menu #menusuperarigatopersonajes="matMenu" class="navbar-mat-menu">
-          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'Futarigato' }">
+          <button mat-menu-item routerLink="/pages/under-construction/">
             Futarigato
           </button>
-          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'Super Arigato' }">
+          <button mat-menu-item routerLink="/pages/under-construction/">
             Super Arigato
           </button>
         </mat-menu>
 
         <button class="navbar-item-dropdown" matButton [matMenuTriggerFor]="menuservices">Servicios</button>
         <mat-menu #menuservices="matMenu" class="navbar-mat-menu">
-          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'mouse-pads' }">
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'mouse-pads', titleCollection: 'Mouse Pads' }">
             Mouse Pads
           </button>
-          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'sublimation' }">
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'sublimation', titleCollection: 'Sublimación' }">
             Sublimación
           </button>
-          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'tars' }">
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'tars', titleCollection: 'Tazas' }">
             Tazas
           </button>
-          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'pins' }">
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'pins', titleCollection: 'Pins' }">
             Pins
           </button>
-          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'stickers' }">
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'stickers', titleCollection: 'Stickers' }">
             Stickers
           </button>
-          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'microfiber' }">
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'microfiber', titleCollection: 'Microfibras' }">
             Microfibras
           </button>
-          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'prints' }">
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'prints', titleCollection: 'Impresiones' }">
             Prints
           </button>
-          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'magnets' }">
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'magnets', titleCollection: 'Imanes' }">
             Imanes
           </button>
           <button
             mat-menu-item
             routerLink="/"
-            [queryParams]="{ collectionHandle: 'advertisement' }"
+            [queryParams]="{ collectionHandle: 'advertisement', titleCollection: 'Publicidad' }"
           >
             Publicidad
           </button>
-          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: '3d' }">
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: '3d', titleCollection: '3D' }">
             3D
           </button>
-          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'mouse-pads' }">
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'mouse-pads', titleCollection: 'Mouse Pads' }">
             Mouse Pads
           </button>
-          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'cup-holder' }">
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'cup-holder', titleCollection: 'Posavasos' }">
             Posavasos
           </button>
-          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'plush' }">
+          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'plush', titleCollection: 'Peluches' }">
             Peluches
           </button>
         </mat-menu>
 
         <button class="navbar-item-dropdown" matButton [matMenuTriggerFor]="menubazarbizarro">Bazar Bizarro</button>
         <mat-menu #menubazarbizarro="matMenu" class="navbar-mat-menu">
-          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'bizarre-shop-figure' }">
+          <button mat-menu-item routerLink="/pages/under-construction/">
             Figuras y Chachara
           </button>
-          <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'bizarre-shop-pau-leo' }">
+          <button mat-menu-item routerLink="/pages/under-construction/">
             Pau y Leo
           </button>
         </mat-menu>
 
         <button class="navbar-item-dropdown" matButton [matMenuTriggerFor]="menuenvios">Envíos</button>
         <mat-menu #menuenvios="matMenu" class="navbar-mat-menu">
-          <button mat-menu-item routerLink="/mensajeria-local">Mensajería Local</button>
-          <button mat-menu-item routerLink="/mensajeria-nacional">Mensajería Nacional</button>
+          <button mat-menu-item routerLink="/pages/under-construction/">Mensajería Local</button>
+          <button mat-menu-item routerLink="/pages/under-construction/">Mensajería Nacional</button>
         </mat-menu>
 
         <a class="navbar-item-link" routerLink="/" hidden>Personalizados</a>
         <button class="navbar-item-dropdown" matButton [matMenuTriggerFor]="menublog">Blog</button>
         <mat-menu #menublog="matMenu" class="navbar-mat-menu">
-          <button mat-menu-item routerLink="/blog">Nuevo Super Arigato</button>
+          <button mat-menu-item routerLink="/pages/under-construction/">Nuevo Super Arigato</button>
         </mat-menu>
         <a class="navbar-item-link" routerLink="/" hidden>Club</a>
       </li>
