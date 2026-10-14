@@ -20,6 +20,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/order-details/order-details').then((m) => m.OrderDetails),
   },
   {
+    path: 'pages/characters/super-arigato',
+    loadComponent: () => import('./pages/characters/super-arigato/super-arigato').then((m) => m.SuperArigato),
+  },
+  {
     path: 'pages/under-construction',
     loadComponent: () =>
       import('./pages/under-construction/under-construction').then((m) => m.UnderConstruction),
