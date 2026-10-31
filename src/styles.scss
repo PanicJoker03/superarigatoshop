@@ -49,7 +49,15 @@ html {
 .arigato-cart-bottom-sheet {
   --mat-bottom-sheet-container-background-color: var(--arigato-white);
   --mat-bottom-sheet-container-shape: 1.25rem 1.25rem 0 0;
-  max-width: 48rem !important;
+  max-width: 48rem;
+}
+
+@media (max-width: 600px) {
+  .arigato-cart-bottom-sheet {
+    width: 100vw;
+    max-width: 100vw;
+    margin-inline: auto;
+  }
 }
 
 body {

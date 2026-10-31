@@ -100,7 +100,13 @@ li a {
     transition: color 0.3s ease;
 }
 
-li a:hover {
+li.li-shop-cart {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+li a:hover,
+li.li-shop-cart:hover {
     color: var(--arigato-yellow);
     text-decoration: underline;
 }
