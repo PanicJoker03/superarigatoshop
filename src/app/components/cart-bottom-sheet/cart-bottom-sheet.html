@@ -1,0 +1,34 @@
+<div class="cart-sheet-content">
+  <mat-card class="summary-card" appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>Tu carrito</mat-card-title>
+      <mat-card-subtitle class="total-summary">Total</mat-card-subtitle>
+      <mat-card-title class="total-summary">{{ subtotal() | currency:'MXN':'symbol':'1.2-2' }}</mat-card-title>
+    </mat-card-header>
+
+    @if (loading()) {
+      <p class="cart-message" aria-live="polite">Cargando carrito...</p>
+    } @else if (cartLines().length === 0) {
+      <p class="cart-message">Tu carrito está vacío.</p>
+    } @else {
+      <mat-nav-list>
+        @for (line of cartLines(); track line.id) {
+          <a mat-list-item>
+            <div class="matListItemIcon" matListItemIcon>
+              <span class="line-quantity">{{ line.quantity }}</span>
+            </div>
+            <span matListItemTitle>{{ line.title }}</span>
+            <div class="matListItemMeta" matListItemMeta>
+              {{ line.subtotal | currency:'MXN':'symbol':'1.2-2' }}
+            </div>
+          </a>
+        }
+      </mat-nav-list>
+    }
+  </mat-card>
+
+  <div class="cart-actions">
+    <button mat-raised-button class="cart-action-secondary" (click)="continueShopping()">Seguir comprando</button>
+    <button mat-raised-button class="cart-action-primary" [disabled]="loading() || cartLines().length === 0" (click)="continueToPayment()">Continuar</button>
+  </div>
+</div>

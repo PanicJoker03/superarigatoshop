@@ -5,10 +5,12 @@ import { MatIcon } from '@angular/material/icon';
 import { NgOptimizedImage } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { SessionService } from '../../services/session-service';
+import { MatBottomSheet, MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { CartBottomSheet } from '../../components/cart-bottom-sheet/cart-bottom-sheet';
 
 @Component({
   selector: 'app-navigation-mobile',
-  imports: [MatToolbarRow, MatIconButton, MatIcon, NgOptimizedImage, RouterLink, MatToolbar],
+  imports: [MatToolbarRow, MatIconButton, MatIcon, NgOptimizedImage, RouterLink, MatToolbar, MatBottomSheetModule],
   templateUrl: './navigation-mobile.html',
   styleUrl: './navigation-mobile.scss',
 })
@@ -17,7 +19,15 @@ export class NavigationMobile {
 
   session = inject(SessionService);
   router = inject(Router);
+  private bottomSheet = inject(MatBottomSheet);
   public menuToggled = output();
+
+  openCart(): void {
+    this.bottomSheet.open(CartBottomSheet, {
+      panelClass: 'arigato-cart-bottom-sheet',
+      ariaLabel: 'Carrito de compras',
+    });
+  }
 
   ngOnInit() {
     //temporal fix, listen for signed each 100 miliseconds

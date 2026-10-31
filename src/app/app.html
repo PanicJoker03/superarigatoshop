@@ -82,39 +82,113 @@
                    (swipeLeft)="onSwapeLeftSideNav()"
                    (swipeRight)="onSwipeRightSideNav()"
       >
-        <mat-list>
-          <mat-list-item></mat-list-item>
+        <!-- TODO: move to component -->
+        <mat-nav-list>
+          <a mat-list-item class="navbar-item-link"></a>
           <mat-divider></mat-divider>
-          <mat-list-item>
-            <a class="navbar-item-link" routerLink="/" >Inicio</a>
-          </mat-list-item>
+          <a mat-list-item class="navbar-item-link" routerLink="/">
+            Inicio
+          </a>
           <mat-divider></mat-divider>
-          <mat-list-item>
-            <a class="navbar-item-link" routerLink="/" [queryParams]="{ collectionHandle: 'plush' }">Peluches</a>
-          </mat-list-item>
-          <div class="navbar-personalizados">
-            <mat-divider></mat-divider>
-            <mat-list-item>
-              <a class="navbar-item-link" routerLink="/" >Personalizados</a>
-            </mat-list-item>
-          </div>
+          <a mat-list-item class="navbar-item-link" routerLink="/" [queryParams]="{ collectionHandle: 'plush' }"> Peluches </a>
           <mat-divider></mat-divider>
-          <mat-list-item>
-            <a class="navbar-item-link" routerLink="/" [queryParams]="{ collectionHandle: 'cup-holder' }">Posavasos</a>
+
+          <!-- Super Arigato -->
+          <mat-list-item class="mobile-navbar-collapsable navbar-superarigato" (click)="toggleMenuSuperArigato()">
+            <div class="mobile-navbar-collapsable-wrap">
+              <span matListItemTitle> Super Arigato </span>
+              <mat-icon matListItemMeta> {{ menuSuperArigatoExpanded() ? 'expand_less' : 'expand_more' }} </mat-icon>
+            </div>
           </mat-list-item>
+          <!-- Super Arigato children -->
+          @if (menuSuperArigatoExpanded()) {
+            <div>
+              <a mat-list-item class="navbar-item-link navbar-child-item" routerLink="/" [queryParams]="{ collectionHandle: 'original-merch', titleCollection: 'Merch Original' }"> Merch Original </a>
+              <a mat-list-item class="navbar-item-link navbar-child-item" routerLink="/pages/under-construction/"> Futarigato </a>
+              <a mat-list-item class="navbar-item-link navbar-child-item" routerLink="/pages/characters/super-arigato/"> Super Arigato </a>
+            </div>
+          }
+
           <mat-divider></mat-divider>
-          <mat-list-item>
-            <a class="navbar-item-link" routerLink="/" [queryParams]="{ collectionHandle: 'tars' }">Tazas</a>
+
+          <!-- Servicios -->
+          <mat-list-item class="mobile-navbar-collapsable navbar-servicios" (click)="toggleMenuServicios()">
+            <div class="mobile-navbar-collapsable-wrap">
+              <span matListItemTitle> Servicios </span>
+              <mat-icon matListItemMeta> {{ menuServiciosExpanded() ? 'expand_less' : 'expand_more' }} </mat-icon>
+            </div>
           </mat-list-item>
+          <!-- Servicios children -->
+          @if (menuServiciosExpanded()) {
+            <div>
+              <a mat-list-item class="navbar-item-link navbar-child-item" routerLink="/" [queryParams]="{ collectionHandle: 'mouse-pads', titleCollection: 'Mouse Pads' }"> Mouse Pads </a>
+              <a mat-list-item class="navbar-item-link navbar-child-item" routerLink="/" [queryParams]="{ collectionHandle: 'sublimation', titleCollection: 'Sublimación' }"> Sublimación </a>
+              <a mat-list-item class="navbar-item-link navbar-child-item" routerLink="/" [queryParams]="{ collectionHandle: 'tars', titleCollection: 'Tazas' }"> Tazas </a>
+              <a mat-list-item class="navbar-item-link navbar-child-item" routerLink="/" [queryParams]="{ collectionHandle: 'pins', titleCollection: 'Pins' }"> Pins </a>
+              <a mat-list-item class="navbar-item-link navbar-child-item" routerLink="/" [queryParams]="{ collectionHandle: 'stickers', titleCollection: 'Stickers' }"> Stickers </a>
+              <a mat-list-item class="navbar-item-link navbar-child-item" routerLink="/" [queryParams]="{ collectionHandle: 'microfiber', titleCollection: 'Microfibras' }"> Microfibras </a>
+              <a mat-list-item class="navbar-item-link navbar-child-item" routerLink="/" [queryParams]="{ collectionHandle: 'prints', titleCollection: 'Impresiones' }"> Prints </a>
+              <a mat-list-item class="navbar-item-link navbar-child-item" routerLink="/" [queryParams]="{ collectionHandle: 'magnets', titleCollection: 'Imanes' }"> Imanes </a>
+              <a mat-list-item class="navbar-item-link navbar-child-item" routerLink="/" [queryParams]="{ collectionHandle: 'advertisement', titleCollection: 'Publicidad' }"> Publicidad </a>
+              <a mat-list-item class="navbar-item-link navbar-child-item" routerLink="/" [queryParams]="{ collectionHandle: '3d', titleCollection: '3D' }"> 3D </a>
+              <a mat-list-item class="navbar-item-link navbar-child-item" routerLink="/" [queryParams]="{ collectionHandle: 'mouse-pads', titleCollection: 'Mouse Pads' }"> Mouse Pads </a>
+              <a mat-list-item class="navbar-item-link navbar-child-item" routerLink="/" [queryParams]="{ collectionHandle: 'cup-holder', titleCollection: 'Posavasos' }"> Posavasos </a>
+              <a mat-list-item class="navbar-item-link navbar-child-item" routerLink="/" [queryParams]="{ collectionHandle: 'plush', titleCollection: 'Peluches' }"> Peluches </a>
+              <a mat-list-item class="navbar-item-link navbar-child-item" routerLink="/" [queryParams]="{ collectionHandle: 'customization', titleCollection: 'Personalizados' }"> Personalizados </a>
+            </div>
+          }
+
           <mat-divider></mat-divider>
-          <mat-list-item>
-            <a class="navbar-item-link" routerLink="/" [queryParams]="{ collectionHandle: 'mouse-pads' }">Mouse Pads</a>
+
+          <!-- Bazar Bizarro -->
+          <mat-list-item class="mobile-navbar-collapsable navbar-bazar-bizarro" (click)="toggleMenuBazarBizarro()">
+            <div class="mobile-navbar-collapsable-wrap">
+              <span matListItemTitle> Bazar Bizarro </span>
+              <mat-icon matListItemMeta> {{ menuBazarBizarroExpanded() ? 'expand_less' : 'expand_more' }} </mat-icon>
+            </div>
           </mat-list-item>
+          <!-- Bazar Bizarro children -->
+          @if (menuBazarBizarroExpanded()) {
+            <div>
+              <a mat-list-item class="navbar-item-link navbar-child-item" routerLink="/pages/under-construction/"> Figuras y Chachara </a>
+              <a mat-list-item class="navbar-item-link navbar-child-item" routerLink="/pages/under-construction/"> Pau y Leo </a>
+            </div>
+          }
+
           <mat-divider></mat-divider>
-          <mat-list-item>
-            <a class="navbar-item-link" routerLink="/" [queryParams]="{ collectionHandle: 'microfiber' }">Microfibras</a>
+
+          <!-- Envios -->
+          <mat-list-item class="mobile-navbar-collapsable navbar-envios" (click)="toggleMenuEnvios()">
+            <div class="mobile-navbar-collapsable-wrap">
+              <span matListItemTitle> Envíos </span>
+              <mat-icon matListItemMeta> {{ menuEnviosExpanded() ? 'expand_less' : 'expand_more' }} </mat-icon>
+            </div>
           </mat-list-item>
-        </mat-list>
+          <!-- Envios children -->
+          @if (menuEnviosExpanded()) {
+            <div>
+              <a mat-list-item class="navbar-item-link navbar-child-item" routerLink="/pages/under-construction/"> Mensajería Local </a>
+              <a mat-list-item class="navbar-item-link navbar-child-item" routerLink="/pages/under-construction/"> Mensajería Nacional </a>
+            </div>
+          }
+
+          <mat-divider></mat-divider>
+
+          <!-- Blog -->
+          <mat-list-item class="mobile-navbar-collapsable navbar-blog" (click)="toggleMenuBlog()">
+            <div class="mobile-navbar-collapsable-wrap">
+              <span matListItemTitle> Blog </span>
+              <mat-icon matListItemMeta> {{ menuBlogExpanded() ? 'expand_less' : 'expand_more' }} </mat-icon>
+            </div>
+          </mat-list-item>
+          <!-- Blog children -->
+          @if (menuBlogExpanded()) {
+            <div>
+              <a mat-list-item class="navbar-item-link navbar-child-item" routerLink="/pages/under-construction/"> Nuevo Super Arigato </a>
+            </div>
+          }
+
+        </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
         <div class="page-body-wrapper">

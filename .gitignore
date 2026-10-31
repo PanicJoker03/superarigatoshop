@@ -44,3 +44,6 @@ yarn-error.log*
 /.idea/superarigatoshop.iml
 /.idea/vcs.xml
 /.idea/watcherTasks.xml
+
+# Local Netlify folder
+.netlify
