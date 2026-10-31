@@ -98,7 +98,7 @@
       </li>
       <li class="navbar-item"></li>
       <div class="buyer-section">
-        <li class="li-shop-cart">
+        <li class="li-shop-cart" role="button" tabindex="0" aria-label="Abrir carrito" (click)="openCart()" (keydown.enter)="openCart()" (keydown.space)="openCart()">
           <img src="img/cart-icon.svg" class="buyer-section-icon" />
           Carrito
         </li>

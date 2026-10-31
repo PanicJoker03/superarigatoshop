@@ -46,6 +46,12 @@ html {
   color: white;
 }
 
+.arigato-cart-bottom-sheet {
+  --mat-bottom-sheet-container-background-color: var(--arigato-white);
+  --mat-bottom-sheet-container-shape: 1.25rem 1.25rem 0 0;
+  max-width: 48rem !important;
+}
+
 body {
   // Default the application to a light color theme. This can be changed to
   // `dark` to enable the dark color theme, or to `light dark` to defer to the
