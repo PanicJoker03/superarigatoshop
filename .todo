@@ -5,19 +5,19 @@
     -> https://material.angular.dev/cdk/layout/overview
     -> ok, cambiar (page-body-wrapper, quitar width 800px)
     -> cambiar .shopy-title font-size: 1.5rem
-    -> agregar menu hamburguesa
-    -> redes sociales arriba, en misma row que logo
+    -> ok, agregar menu hamburguesa
+    -> ok, redes sociales arriba, en misma row que logo
     -> ver otros sitios responsivos
     -> cambiar estilo chatbot, volver burbuja
 * agregar buscador
-* agregar boton start shoping en ordenes de compra vacias
+* ok, agregar boton start shoping en ordenes de compra vacias
 ------------------------
 banner super arigato shop, asi que se quede
 Menu merch artistas
 
 arte carga acuarelas ---> art toy
 
-personalizados: envio a contacto disenio, de tazas, microfibra,
+pending, personalizados: envio a contacto disenio, de tazas, microfibra,
 mousepads, exhibicion.
 
 Seleccion de tipo de producto, imagen, fotografia.

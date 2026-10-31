@@ -21,6 +21,10 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "outputPath": {
+              "base": "dist/superarigatoshop",
+              "browser": "browser"
+            },
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
@@ -28,18 +32,12 @@
               {
                 "glob": "**/*",
                 "input": "public",
-                "src/CNAME"
-              }
+                "output": "/"
+              },
+              "src/CNAME"
             ],
             "styles": ["src/styles.scss"],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "security": {
-              "allowedHosts": []
-            },
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "outputMode": "static"
           },
           "configurations": {
             "production": {
@@ -85,6 +83,14 @@
         },
         "test": {
           "builder": "@angular/build:unit-test"
+        },
+        "deploy": {
+          "builder": "@netlify-builder/deploy:deploy",
+          "options": {
+            "outputPath": "dist/superarigatoshop",
+            "netlifyToken": "nfp_ANfLMSuJNVGz5GuHg8VsQUWhPM1kNNQtd8c9",
+            "siteId": "515e8831-4034-45b3-aca5-b0685ebd7145"
+          }
         }
       }
     }

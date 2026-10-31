@@ -1,18 +1,26 @@
 {
   "name": "superarigatoshop",
-  "version": "1.1.3",
+  "version": "1.1.4",
+  
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
+    "start": "ng serve superarigatoshop --host 0.0.0.0 --port 4200 --allowed-hosts",
     "test": "ng test",
+    "ng": "ng",
+    "build": "ng build",
+    "build:production": "ng build --configuration production",
+    "watch": "ng build --watch --configuration development",
     "serve:ssr:superarigatoshop": "node dist/superarigatoshop/server/server.mjs",
-    "deploy": "ng build --configuration production",
-    "githubpages-deploy": "ng build --configuration production --base-href \"/\" && npx angular-cli-ghpages --dir=dist/superarigatoshop/browser --repo=https://github.com/AegisHyper/superarigatoshop-deploy.git --branch=main"    
+
+    "deploy": "npm run build:production",
+    "deploy:preview": "npm run build:production && npx netlify deploy --dir=dist/superarigatoshop/browser",
+    "deploy:production": "npm run build:production && npx netlify deploy --prod --dir=dist/superarigatoshop/browser",
+
+    "netlify:login": "netlify login",
+    "netlify:link": "netlify link",
+
+    "githubpages-deploy": "ng build --configuration production --base-href \"/\" && npx angular-cli-ghpages --dir=dist/superarigatoshop/browser --repo=https://github.com/AegisHyper/superarigatoshop-deploy.git --branch=main"
   },
-  "old.scripts": {
-  },
+  "old.scripts": {},
   "private": true,
   "packageManager": "npm@11.6.2",
   "dependencies": {
@@ -43,10 +51,12 @@
     "@angular/build": "^21.2.6",
     "@angular/cli": "^21.2.6",
     "@angular/compiler-cli": "^21.2.0",
+    "@netlify-builder/deploy": "^5.0.0",
     "@types/express": "^5.0.1",
     "@types/node": "^20.17.19",
     "angular-cli-ghpages": "^3.1.0",
     "jsdom": "^28.0.0",
+    "netlify-cli": "^27.16.1",
     "prettier": "^3.8.1",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"
