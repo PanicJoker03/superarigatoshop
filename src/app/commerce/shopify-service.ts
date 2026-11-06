@@ -48,6 +48,7 @@ const GET_PRODUCTS_BY_TAG = gql`
           id
           title
           description
+          tags
           images(first: 1) {
             edges {
               node {
@@ -99,34 +100,6 @@ const GET_PRODUCT_DETAILS = gql`
   }
 `;
 
-const GET_PRODUCTS_BY_COLLECTION = gql`
-  query {
-  collectionByHandle(handle: "Home page") {
-    title
-    products(first: 250) {
-      edges {
-        node {
-          id
-          title
-          variants(first: 10) {
-            edges {
-              node {
-                price { amount currencyCode }
-              }
-            }
-          }
-        }
-      }
-      pageInfo {
-        hasNextPage
-        endCursor
-      }
-    }
-  }
-}
-`;
-
-
 @Injectable({
   providedIn: 'root',
 })
@@ -139,12 +112,25 @@ export class ShopifyService {
     return this.apollo.query({
       query: collectionHandle ? GET_PRODUCTS_BY_TAG : GET_PRODUCTS,
       variables: {
-        tag: collectionHandle ? `tag:${collectionHandle}` : undefined,
+        tag: collectionHandle
+          ? collectionHandle === 'microfibra'
+            ? `tag:${collectionHandle} -tag:"Mouse Pad" -tag:Portavasos`
+            : `tag:${collectionHandle}`
+          : undefined,
       },
     }).pipe(
       map((result: any) => {
         console.log('Raw response from Shopify API:', result);
-        return result.data.products.edges.map((edge: any): Product => {
+        const edges = result.data.products.edges;
+        const matchingEdges = collectionHandle
+          ? edges.filter((edge: any) =>
+              edge.node.tags?.some(
+                (tag: string) => tag.trim().toLowerCase() === collectionHandle.trim().toLowerCase(),
+              ),
+            )
+          : edges;
+
+        return matchingEdges.map((edge: any): Product => {
           const variantPrice = edge.node.variants?.edges?.[0]?.node?.priceV2;
           return {
             id: edge.node.id,
