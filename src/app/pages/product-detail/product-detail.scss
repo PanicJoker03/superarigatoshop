@@ -90,6 +90,37 @@ mat-button-toggle {
 @media screen and (max-width: 650px){
   .product-detail-wrapper {
     flex-direction: column;
+        align-items: stretch;
+        max-height: none;
+        overflow: visible;
+    }
+
+    .product-detail-image,
+    .product-detail-image mat-card {
+        flex: none;
+        max-height: none;
+        overflow: visible;
+    }
+
+    .product-detail-image img {
+        max-height: none;
+    }
+
+    .product-detail-info {
+        flex: none;
+        max-height: none;
+        overflow: visible;
+        padding-bottom: 3rem;
+    }
+
+    .product-buy-button {
+        position: fixed;
+        left: 1rem;
+        right: 1rem;
+        bottom: calc(4rem + env(safe-area-inset-bottom) + 0.5rem);
+        width: calc(100% - 2rem);
+        margin: 0;
+        z-index: 999;
   }
 
   .separator {

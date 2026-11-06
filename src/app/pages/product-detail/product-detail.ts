@@ -160,7 +160,7 @@ interface ProductImageDialogData {
     <div mat-dialog-content class="product-image-dialog-content">
       <img [src]="data.imageUrl" [alt]="data.title" class="product-image-dialog-image" />
     </div>
-    <div mat-dialog-actions align="end" class="product-image-dialog-actions">
+    <div mat-dialog-actions align="center" class="product-image-dialog-actions">
       <button mat-flat-button color="primary" (click)="closeDialog()">Cerrar</button>
     </div>
   `,
