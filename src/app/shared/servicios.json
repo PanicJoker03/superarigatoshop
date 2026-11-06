@@ -1,0 +1,89 @@
+{
+    "servicios": [
+        {
+            "nombre": "Mouse Pads",
+            "descripcion": "Mouse Pads de alta calidad con diseños únicos.",
+            "imagen": "/img/servicios/mousepad.jpeg",
+            "handle": "mouse-pads"
+        },
+        {
+            "nombre" : "Sublimación",
+            "descripcion" : "Sublimación de productos personalizados.",
+            "imagen" : "/img/servicios/sublimacion.jpeg",
+            "handle" : "sublimacion"
+        },
+        {
+            "nombre" : "Tazas",
+            "descripcion" : "Tazas personalizadas con diseños exclusivos.",
+            "imagen" : "/img/servicios/tazas.jpeg",
+            "handle" : "tazas"
+        },
+        {
+            "nombre" :"Pins",
+            "descripcion" : "Pins de alta calidad con diseños únicos.",
+            "imagen" : "/img/servicios/pins.jpeg",
+            "handle" : "pins"
+        },
+        {
+            "nombre" : "Stickers",
+            "descripcion" : "Stickers personalizados para tus productos.",
+            "imagen" : "/img/servicios/stickers.jpeg",
+            "handle" : "stickers"
+        },
+        {
+            "nombre" : "Microfibras",
+            "descripcion" : "Microfibras personalizadas con diseños exclusivos.",
+            "imagen" : "/img/servicios/microfibras.webp",
+            "handle" : "microfibras"
+        },
+        {
+            "nombre" : "Prints",
+            "descripcion" : "Prints de alta calidad con diseños únicos.",
+            "imagen" : "/img/servicios/prints.jpeg",
+            "handle" : "prints"
+        },
+        {
+            "nombre" : "Clickers",
+            "descripcion" : "Clickers personalizados para tus productos.",
+            "imagen" : "/img/servicios/clickers.webp",
+            "handle" : "clickers"
+        },
+        {
+            "nombre" : "Imanes",
+            "descripcion" : "Imanes personalizados para tus productos.",
+            "imagen" : "/img/servicios/imanes.jpeg",
+            "handle" : "imanes"
+        },
+        {
+            "nombre" : "Publicidad",
+            "descripcion" : "Publicidad personalizada para tus productos.",
+            "imagen" : "/img/servicios/publicidad.png",
+            "handle" : "publicidad"
+        },
+        {
+            "nombre" : "3D Printing",
+            "descripcion" : "Impresión 3D de alta calidad con diseños únicos.",
+            "imagen" : "/img/servicios/3d-printing.png",
+            "handle" : "3d-printing"
+        },
+        {
+            "nombre" : "Posavasos",
+            "descripcion" : "Posavasos personalizados para tus productos.",
+            "imagen" : "/img/servicios/posavasos.webp",
+            "handle" : "posavasos"
+        },
+        {
+            "nombre" : "Peluches",
+            "descripcion" : "Peluches personalizados con diseños exclusivos.",
+            "imagen" : "/img/servicios/peluches.webp",
+            "handle" : "peluches"
+        },
+        {
+            "nombre" : "Personalizados",
+            "descripcion" : "Productos personalizados para tus necesidades.",
+            "imagen" : "/img/servicios/personalizados.webp",
+            "handle" : "personalizados"
+        }
+    
+    ]
+}

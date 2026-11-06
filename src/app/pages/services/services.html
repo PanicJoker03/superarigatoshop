@@ -1,0 +1,14 @@
+<main class="services-page">
+  <h1 class="services-title">Servicios</h1>
+
+  <div class="services-grid">
+    @for (service of services; track service.handle) {
+      <app-service-grid-item
+        [handle]="service.handle"
+        [imageUrl]="service.imagen"
+        [title]="service.nombre"
+        [description]="service.descripcion">
+      </app-service-grid-item>
+    }
+  </div>
+</main>

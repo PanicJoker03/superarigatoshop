@@ -1,0 +1,70 @@
+.service-info-page {
+  box-sizing: border-box;
+  min-height: 60vh;
+  padding: clamp(1rem, 4vw, 2rem);
+}
+
+.service-info-card,
+.service-info-not-found {
+  box-sizing: border-box;
+  width: min(100%, 900px);
+  margin: 0 auto;
+  background: var(--arigato-white);
+}
+
+.service-info-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(1rem, 4vw, 2.5rem);
+  padding: clamp(1rem, 4vw, 2.5rem);
+}
+
+.service-info-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.service-info-eyebrow {
+  margin: 0 0 0.75rem;
+  color: var(--arigato-orange);
+  font-family: 'Paytone One', sans-serif;
+  text-transform: uppercase;
+}
+
+.service-info-content h1 {
+  margin: 0;
+  font-family: 'Paytone One', sans-serif;
+  line-height: 1.15;
+}
+
+.service-info-description {
+  margin: 1rem 0 0;
+  line-height: 1.7;
+}
+
+.service-info-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.request-service-button {
+  background-color: var(--arigato-red);
+  color: var(--arigato-white);
+}
+
+.service-info-not-found {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+@media screen and (max-width: 650px) {
+  .service-info-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

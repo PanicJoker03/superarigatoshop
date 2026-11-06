@@ -59,6 +59,10 @@ export class App {
     return `https://wa.me/${this.environmentService.whatsappPhoneNumber}?text=${encodeURIComponent(message)}`;
   }
 
+  get facebookPageUrl(): string {
+    return this.environmentService.urlFacecookPage;
+  }
+
   ngOnInit() {
     console.log('App component initialized');
     console.log('loading chat');
@@ -103,7 +107,7 @@ export class App {
   collapseNavigation(){
     this.sidenavOpened.set(false);
     this.menuSuperArigatoExpanded.set(false);
-    this.menuServiciosExpanded.set(false);
+    this.menuMerchandiseExpanded.set(false);
     this.menuBazarBizarroExpanded.set(false);
     this.menuEnviosExpanded.set(false);
   }
@@ -114,9 +118,9 @@ export class App {
     this.menuSuperArigatoExpanded.set(!this.menuSuperArigatoExpanded());
   }
 
-  menuServiciosExpanded = signal<boolean>(false);
-  toggleMenuServicios(): void {
-    this.menuServiciosExpanded.set(!this.menuServiciosExpanded());
+  menuMerchandiseExpanded = signal<boolean>(false);
+  toggleMenuMerchandise(): void {
+    this.menuMerchandiseExpanded.set(!this.menuMerchandiseExpanded());
   }
 
   menuBazarBizarroExpanded = signal<boolean>(false);
