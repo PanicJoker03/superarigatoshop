@@ -181,6 +181,12 @@ mat-card button img.button-icon {
         display: none;
     }
 
+    .checkout-payment-info > button {
+        flex: 0 0 2.5rem;
+        height: 2.5rem;
+        min-height: 2.5rem;
+    }
+
     .separator {
         display: none;
     }
