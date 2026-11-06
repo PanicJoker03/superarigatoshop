@@ -23,8 +23,8 @@
           </button>
         </mat-menu>
 
-        <button class="navbar-item-dropdown" matButton [matMenuTriggerFor]="menuservices">Servicios</button>
-        <mat-menu #menuservices="matMenu" class="navbar-mat-menu">
+        <button class="navbar-item-dropdown" matButton [matMenuTriggerFor]="menumerchandise">Merchandise</button>
+        <mat-menu #menumerchandise="matMenu" class="navbar-mat-menu">
           <button mat-menu-item routerLink="/" [queryParams]="{ collectionHandle: 'mouse-pads', titleCollection: 'Mouse Pads' }">
             Mouse Pads
           </button>
@@ -72,6 +72,8 @@
             Personalizados
           </button>
         </mat-menu>
+
+        <a class="navbar-item-link" routerLink="/pages/services">Servicios</a>
 
         <button class="navbar-item-dropdown" matButton [matMenuTriggerFor]="menuenvios">Envíos</button>
         <mat-menu #menuenvios="matMenu" class="navbar-mat-menu">

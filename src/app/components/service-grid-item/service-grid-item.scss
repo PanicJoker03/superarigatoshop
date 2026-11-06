@@ -1,0 +1,40 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
+.service-grid-item-link {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.service-grid-item {
+  height: 100%;
+  min-width: 0;
+  text-align: center;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 20%), 0 1px 1px rgb(0 0 0 / 14%), 0 2px 1px rgb(0 0 0 / 12%);
+}
+
+.service-grid-item-link:hover .service-grid-item h2 {
+  color: var(--arigato-blue);
+}
+
+.service-grid-item img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.service-grid-item h2 {
+  margin: 0.75rem 0 0.25rem;
+  font-family: 'Paytone One', sans-serif;
+  font-size: 1.1rem;
+}
+
+.service-grid-item p {
+  margin: 0;
+  line-height: 1.5;
+}

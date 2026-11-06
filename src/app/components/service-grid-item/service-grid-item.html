@@ -1,0 +1,14 @@
+<a
+  class="service-grid-item-link"
+  routerLink="/pages/service-info"
+  [queryParams]="{ handle: handle }"
+  [state]="{ service: { handle: handle, nombre: title, descripcion: description, imagen: imageUrl } }"
+>
+  <mat-card class="shopy-card service-grid-item" appearance="outlined">
+    <mat-card-content>
+      <img mat-card-image [src]="imageUrl" [alt]="title" />
+      <h2>{{ title }}</h2>
+      <p>{{ description }}</p>
+    </mat-card-content>
+  </mat-card>
+</a>

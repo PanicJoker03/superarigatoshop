@@ -32,6 +32,14 @@ export const routes: Routes = [
     path: 'pages/blog',
     loadComponent: () => import('./pages/blog/blog').then((m) => m.Blog),
   },
+  {
+    path: 'pages/services',
+    loadComponent: () => import('./pages/services/services').then((m) => m.Services),
+  },
+  {
+    path: 'pages/service-info',
+    loadComponent: () => import('./pages/service-info/service-info').then((m) => m.ServiceInfo),
+  },
   { path: 'signin', loadComponent: () => import('./pages/signin/signin').then((m) => m.Signin) },
   { path: '**', redirectTo: '' },
 ];

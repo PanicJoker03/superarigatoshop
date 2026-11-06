@@ -6,6 +6,7 @@
 }
 
 .blog-post {
+  box-sizing: border-box;
   width: min(100%, 700px);
   margin: 0 auto;
   padding: clamp(1.5rem, 5vw, 3.5rem);
@@ -30,6 +31,12 @@
   line-height: 1.1;
 }
 
+.blog-date {
+  margin: 0.75rem 0 0;
+  color: #66757d;
+  font-size: 0.9rem;
+}
+
 .blog-body {
   display: flex;
   align-items: flex-start;
@@ -52,14 +59,28 @@
   line-height: 1.8;
 }
 
-.blog-content p {
+.blog-content ::ng-deep p {
   margin: 0 0 1.25rem;
+}
+
+.blog-content ::ng-deep img {
+  max-width: 100%;
+  height: auto;
 }
 
 .blog-content .blog-signature {
   margin: 2rem 0 0;
   color: #a94a20;
   font-family: 'Paytone One', sans-serif;
+}
+
+.blog-state {
+  box-sizing: border-box;
+  width: min(100%, 700px);
+  margin: 0 auto;
+  padding: 1.5rem;
+  color: #33434b;
+  background: var(--arigato-white);
 }
 
 @media (max-width: 600px) {
