@@ -19,6 +19,41 @@
 @media screen and (max-width: 650px) {
   .mat-sidenav-content {
     background-color: var(--arigato-white);
+    padding-bottom: calc(4rem + env(safe-area-inset-bottom));
+  }
+
+  .mobile-social-footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 4rem;
+    padding: 0.5rem 1rem calc(0.5rem + env(safe-area-inset-bottom));
+    box-sizing: border-box;
+    background-color: var(--arigato-yellow);
+  }
+
+  .mobile-social-footer .social-media-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+  }
+
+  .mobile-social-footer .social-media-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-social-footer img {
+    display: block;
+    width: 2rem;
+    height: 2rem;
   }
 
   .page-body-wrapper {

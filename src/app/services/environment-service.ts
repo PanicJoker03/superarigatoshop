@@ -43,4 +43,8 @@ export class EnvironmentService {
   public get ordersFallbackImage():string {
     return environment.ordersFallbackImage;
   }
+
+  public get whatsappPhoneNumber(): string {
+    return environment.whatsappPhoneNumber;
+  }
 }

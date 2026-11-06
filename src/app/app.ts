@@ -13,6 +13,7 @@ import { MatDivider, MatList, MatListItem, MatNavList } from '@angular/material/
 import { MatMenuItem } from '@angular/material/menu';
 import { SwapDirective } from './shared/swap-directive';
 import { MatIcon } from '@angular/material/icon';
+import { EnvironmentService } from './services/environment-service';
 
 enum DeviceViewMode {
   Mobile = 'mobile',
@@ -48,9 +49,15 @@ export class App {
 
   breakpointObserver = inject(BreakpointObserver);
   router = inject(Router);
+  private environmentService = inject(EnvironmentService);
   deviceViewMode = signal<DeviceViewMode>(<DeviceViewMode>'');
   isReady = signal(false);
   constructor(private chatbot: ChatbotService) {}
+
+  get whatsappContactUrl(): string {
+    const message = 'Hola super arigato, necesito información por favor';
+    return `https://wa.me/${this.environmentService.whatsappPhoneNumber}?text=${encodeURIComponent(message)}`;
+  }
 
   ngOnInit() {
     console.log('App component initialized');
