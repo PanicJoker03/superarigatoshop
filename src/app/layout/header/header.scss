@@ -59,7 +59,15 @@
 .social-media-bar .social-media-icon img {
     fill: black ;
     width: 2rem;
+    height: 2rem;
     margin: 0 0.5rem;
+    display: block;
+}
+
+.social-media-bar .social-media-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .arigato-red {
