@@ -3,7 +3,7 @@
   "version": "1.1.4",
   
   "scripts": {
-    "start": "ng serve superarigatoshop --host 0.0.0.0 --port 4200 --allowed-hosts",
+    "start": "ng serve superarigatoshop --host 0.0.0.0 --port 4300",
     "test": "ng test",
     "ng": "ng",
     "build": "ng build",
