@@ -6,7 +6,7 @@ export const environment = {
     ordersFallbackImage: "/img/item-unavalaible.png",
     shopify: {
         storeUrl : 'https://7zhqdk-8r.myshopify.com',
-        apiVersion: '2024-07',
+        apiVersion: '2026-01',
         storeFrontToken: "623ca710542894d0a1377e069f001d48"
     },
     customerCreationRequired : {

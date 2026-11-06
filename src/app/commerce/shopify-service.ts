@@ -42,7 +42,7 @@ const GET_PRODUCTS = gql`
 
 const GET_PRODUCTS_BY_TAG = gql`
   query GetProductsByTag($tag: String!) {
-    products(first: 10, query: $tag) {
+    products(first: 50, query: $tag, sortKey: CREATED_AT, reverse: true) {
       edges {
         node {
           id
@@ -139,7 +139,7 @@ export class ShopifyService {
     return this.apollo.query({
       query: collectionHandle ? GET_PRODUCTS_BY_TAG : GET_PRODUCTS,
       variables: {
-        tag: collectionHandle ? `${collectionHandle}` : undefined,
+        tag: collectionHandle ? `tag:${collectionHandle}` : undefined,
       },
     }).pipe(
       map((result: any) => {
