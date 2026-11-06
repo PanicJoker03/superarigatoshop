@@ -48,6 +48,7 @@ const GET_PRODUCTS_BY_TAG = gql`
           id
           title
           description
+          productType
           tags
           images(first: 1) {
             edges {
@@ -111,10 +112,11 @@ export class ShopifyService {
     console.log('Fetching products from Shopify API with collection handle:', collectionHandle);
     return this.apollo.query({
       query: collectionHandle ? GET_PRODUCTS_BY_TAG : GET_PRODUCTS,
+      fetchPolicy: 'network-only',
       variables: {
         tag: collectionHandle
           ? collectionHandle === 'microfibra'
-            ? `tag:${collectionHandle} -tag:"Mouse Pad" -tag:Portavasos`
+            ? 'product_type:Microfibra OR (tag:Microfibra -tag:"Mouse Pad" -tag:Portavasos)'
             : `tag:${collectionHandle}`
           : undefined,
       },
@@ -123,11 +125,23 @@ export class ShopifyService {
         console.log('Raw response from Shopify API:', result);
         const edges = result.data.products.edges;
         const matchingEdges = collectionHandle
-          ? edges.filter((edge: any) =>
-              edge.node.tags?.some(
-                (tag: string) => tag.trim().toLowerCase() === collectionHandle.trim().toLowerCase(),
-              ),
-            )
+          ? edges.filter((edge: any) => {
+              const normalizedHandle = collectionHandle.trim().toLowerCase();
+              const tags = edge.node.tags ?? [];
+              const hasExactTag = tags.some(
+                (tag: string) => tag.trim().toLowerCase() === normalizedHandle,
+              );
+
+              if (normalizedHandle === 'microfibra') {
+                const hasOtherCategoryTag = tags.some((tag: string) =>
+                  ['mouse pad', 'portavasos'].includes(tag.trim().toLowerCase()),
+                );
+                return edge.node.productType?.trim().toLowerCase() === 'microfibra' ||
+                  (hasExactTag && !hasOtherCategoryTag);
+              }
+
+              return hasExactTag;
+            })
           : edges;
 
         return matchingEdges.map((edge: any): Product => {
