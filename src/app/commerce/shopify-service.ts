@@ -4,14 +4,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { gql } from '@apollo/client';
 import { Apollo } from 'apollo-angular';
-import { map, Observable } from 'rxjs';
+import { EMPTY, expand, map, Observable, reduce } from 'rxjs';
 import { Product } from '../components/product-grid-item/product.model';
 
 //we use the gql tag to parse our query string into a query document
 //lng: this query is important, it the core of the home catalog
 const GET_PRODUCTS = gql`
-  query GetProducts {
-    products(first: 10) {
+  query GetProducts($after: String) {
+    products(first: 250, after: $after) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
       edges {
         node {
           id
@@ -41,8 +45,12 @@ const GET_PRODUCTS = gql`
 `;
 
 const GET_PRODUCTS_BY_TAG = gql`
-  query GetProductsByTag($tag: String!) {
-    products(first: 50, query: $tag, sortKey: CREATED_AT, reverse: true) {
+  query GetProductsByTag($tag: String!, $after: String) {
+    products(first: 250, after: $after, query: $tag, sortKey: CREATED_AT, reverse: true) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
       edges {
         node {
           id
@@ -110,20 +118,28 @@ export class ShopifyService {
   // Example method to fetch products from Shopify API
   getProducts(collectionHandle: string | null | undefined = undefined): Observable<Product[]> {
     console.log('Fetching products from Shopify API with collection handle:', collectionHandle);
-    return this.apollo.query({
-      query: collectionHandle ? GET_PRODUCTS_BY_TAG : GET_PRODUCTS,
+    const query = collectionHandle ? GET_PRODUCTS_BY_TAG : GET_PRODUCTS;
+    const tag = collectionHandle
+      ? collectionHandle === 'microfibra'
+        ? 'product_type:Microfibra OR (tag:Microfibra -tag:"Mouse Pad" -tag:Portavasos)'
+        : `tag:${collectionHandle}`
+      : undefined;
+    const fetchPage = (after: string | null) => this.apollo.query({
+      query,
       fetchPolicy: 'network-only',
-      variables: {
-        tag: collectionHandle
-          ? collectionHandle === 'microfibra'
-            ? 'product_type:Microfibra OR (tag:Microfibra -tag:"Mouse Pad" -tag:Portavasos)'
-            : `tag:${collectionHandle}`
-          : undefined,
-      },
-    }).pipe(
-      map((result: any) => {
-        console.log('Raw response from Shopify API:', result);
-        const edges = result.data.products.edges;
+      variables: collectionHandle ? { tag, after } : { after },
+    });
+
+    return fetchPage(null).pipe(
+      expand((result: any) => {
+        const pageInfo = result.data.products.pageInfo;
+        return pageInfo.hasNextPage && pageInfo.endCursor
+          ? fetchPage(pageInfo.endCursor)
+          : EMPTY;
+      }),
+      map((result: any) => result.data.products.edges),
+      reduce((allEdges: any[], edges: any[]) => allEdges.concat(edges), []),
+      map((edges: any[]) => {
         const matchingEdges = collectionHandle
           ? edges.filter((edge: any) => {
               const normalizedHandle = collectionHandle.trim().toLowerCase();
