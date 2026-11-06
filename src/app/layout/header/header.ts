@@ -18,6 +18,10 @@ export class Header {
     return `https://wa.me/${this.environmentService.whatsappPhoneNumber}?text=${encodeURIComponent(message)}`;
   }
 
+  get facebookPageUrl(): string {
+    return this.environmentService.urlFacecookPage;
+  }
+
   btnHeaderClicked(event: MouseEvent) {
     this.router.navigate(['/']).then(()=>{
       console.log('header clicked... navigating to home page');

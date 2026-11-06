@@ -47,4 +47,8 @@ export class EnvironmentService {
   public get whatsappPhoneNumber(): string {
     return environment.whatsappPhoneNumber;
   }
+
+  public get urlFacecookPage(): string {
+    return environment.urlFacecookPage;
+  }
 }

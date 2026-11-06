@@ -5,6 +5,7 @@ export const environment = {
     chatbotServiceInstanceID : "eacd5535-3820-4ade-8317-d60400e91b49",
     ordersFallbackImage: "/img/item-unavalaible.png",
     whatsappPhoneNumber: "528117491328",
+    urlFacecookPage: "https://www.facebook.com/profile.php?id=61566331820477",
     shopify: {
         storeUrl : 'https://7zhqdk-8r.myshopify.com',
         apiVersion: '2026-01',
