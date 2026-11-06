@@ -106,7 +106,6 @@ export class App {
     this.menuServiciosExpanded.set(false);
     this.menuBazarBizarroExpanded.set(false);
     this.menuEnviosExpanded.set(false);
-    this.menuBlogExpanded.set(false);
   }
 
   //#begin: mobile side nav menus
@@ -130,10 +129,6 @@ export class App {
     this.menuEnviosExpanded.set(!this.menuEnviosExpanded());
   }
 
-  menuBlogExpanded = signal<boolean>(false);
-  toggleMenuBlog(): void {
-    this.menuBlogExpanded.set(!this.menuBlogExpanded());
-  }
   //#end: mobile side nav menus
 
   protected readonly DeviceViewMode = DeviceViewMode;

@@ -175,18 +175,7 @@
           <mat-divider></mat-divider>
 
           <!-- Blog -->
-          <mat-list-item class="mobile-navbar-collapsable navbar-blog" (click)="toggleMenuBlog()">
-            <div class="mobile-navbar-collapsable-wrap">
-              <span matListItemTitle> Blog </span>
-              <mat-icon matListItemMeta> {{ menuBlogExpanded() ? 'expand_less' : 'expand_more' }} </mat-icon>
-            </div>
-          </mat-list-item>
-          <!-- Blog children -->
-          @if (menuBlogExpanded()) {
-            <div>
-              <a mat-list-item class="navbar-item-link navbar-child-item" routerLink="/pages/under-construction/"> Nuevo Super Arigato </a>
-            </div>
-          }
+          <a mat-list-item class="navbar-item-link navbar-blog" routerLink="/pages/blog"> Blog </a>
 
         </mat-nav-list>
       </mat-sidenav>
