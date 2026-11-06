@@ -73,16 +73,6 @@
           </button>
         </mat-menu>
 
-        <button class="navbar-item-dropdown" matButton [matMenuTriggerFor]="menubazarbizarro">Bazar Bizarro</button>
-        <mat-menu #menubazarbizarro="matMenu" class="navbar-mat-menu">
-          <button mat-menu-item routerLink="/pages/under-construction/">
-            Figuras y Chachara
-          </button>
-          <button mat-menu-item routerLink="/pages/under-construction/">
-            Pau y Leo
-          </button>
-        </mat-menu>
-
         <button class="navbar-item-dropdown" matButton [matMenuTriggerFor]="menuenvios">Envíos</button>
         <mat-menu #menuenvios="matMenu" class="navbar-mat-menu">
           <button mat-menu-item routerLink="/pages/under-construction/">Mensajería Local</button>
@@ -90,10 +80,7 @@
         </mat-menu>
 
         <a class="navbar-item-link" routerLink="/" hidden>Personalizados</a>
-        <button class="navbar-item-dropdown" matButton [matMenuTriggerFor]="menublog">Blog</button>
-        <mat-menu #menublog="matMenu" class="navbar-mat-menu">
-          <button mat-menu-item routerLink="/pages/blog">Nuevo Super Arigato</button>
-        </mat-menu>
+        <a class="navbar-item-link" routerLink="/pages/blog">Blog</a>
         <a class="navbar-item-link" routerLink="/" hidden>Club</a>
       </li>
       <li class="navbar-item"></li>
