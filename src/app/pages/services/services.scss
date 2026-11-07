@@ -9,6 +9,12 @@
   font-family: 'Inter', sans-serif;
 }
 
+.services-subtitle {
+  margin: 0.25rem 0 0 1rem;
+  color: #33434b;
+  line-height: 1.5;
+}
+
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

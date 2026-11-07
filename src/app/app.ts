@@ -106,26 +106,14 @@ export class App {
 
   collapseNavigation(){
     this.sidenavOpened.set(false);
-    this.menuSuperArigatoExpanded.set(false);
-    this.menuMerchandiseExpanded.set(false);
-    this.menuBazarBizarroExpanded.set(false);
+    this.menuPersonajesExpanded.set(false);
     this.menuEnviosExpanded.set(false);
   }
 
   //#begin: mobile side nav menus
-  menuSuperArigatoExpanded = signal<boolean>(false);
-  toggleMenuSuperArigato(): void {
-    this.menuSuperArigatoExpanded.set(!this.menuSuperArigatoExpanded());
-  }
-
-  menuMerchandiseExpanded = signal<boolean>(false);
-  toggleMenuMerchandise(): void {
-    this.menuMerchandiseExpanded.set(!this.menuMerchandiseExpanded());
-  }
-
-  menuBazarBizarroExpanded = signal<boolean>(false);
-  toggleMenuBazarBizarro(): void {
-    this.menuBazarBizarroExpanded.set(!this.menuBazarBizarroExpanded());
+  menuPersonajesExpanded = signal<boolean>(false);
+  toggleMenuPersonajes(): void {
+    this.menuPersonajesExpanded.set(!this.menuPersonajesExpanded());
   }
 
   menuEnviosExpanded = signal<boolean>(false);

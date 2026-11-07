@@ -44,6 +44,7 @@ export class Home {
           this.collectionHandle.set('Portavasos');
           break;
         case 'microfiber':
+        case 'microfibras':
           this.collectionHandle.set('microfibra');
           break;
         //default:

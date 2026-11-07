@@ -49,6 +49,12 @@
             "handle" : "clickers"
         },
         {
+            "nombre" : "Llaveros",
+            "descripcion" : "Llaveros personalizados con diseños exclusivos.",
+            "imagen" : "/img/servicios/llaveros.webp",
+            "handle" : "llaveros"
+        },
+        {
             "nombre" : "Imanes",
             "descripcion" : "Imanes personalizados para tus productos.",
             "imagen" : "/img/servicios/imanes.jpeg",
