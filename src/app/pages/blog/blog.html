@@ -1,0 +1,26 @@
+<main class="blog-page">
+  @if (loading()) {
+    <p class="blog-state">Cargando entradas del blog...</p>
+  } @else if (hasError()) {
+    <p class="blog-state">No se pudieron cargar las entradas del blog. Inténtalo más tarde.</p>
+  } @else if (entries().length === 0) {
+    <p class="blog-state">No hay entradas publicadas todavía.</p>
+  } @else {
+    @for (entry of entries(); track entry.id) {
+      <article class="blog-post">
+        <p class="blog-eyebrow">{{ entry.blogTitle }}</p>
+        <h1>{{ entry.title }}</h1>
+        <p class="blog-date">
+          <time [attr.datetime]="entry.publishedAt">Publicado el {{ entry.publishedAt | date:'longDate' }}</time>
+        </p>
+
+        <div class="blog-body">
+          @if (entry.imageUrl) {
+            <img class="blog-image" [src]="entry.imageUrl" [alt]="entry.imageAlt || entry.title" />
+          }
+          <div class="blog-content" [innerHTML]="entry.contentHtml"></div>
+        </div>
+      </article>
+    }
+  }
+</main>

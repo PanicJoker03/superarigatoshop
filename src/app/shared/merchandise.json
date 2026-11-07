@@ -1,0 +1,58 @@
+{
+    "servicios": [
+        {
+            "nombre": "Mouse Pads",
+            "descripcion": "Mouse Pads oficiales de Super Arigato con diseños originales y exclusivos.",
+            "imagen": "/img/servicios/mousepad.jpeg",
+            "handle": "mouse-pads"
+        },
+        {
+            "nombre" : "Tazas",
+            "descripcion" : "Tazas oficiales de Super Arigato con diseños originales y exclusivos.",
+            "imagen" : "/img/servicios/tazas.jpeg",
+            "handle" : "tazas"
+        },
+        {
+            "nombre" :"Pins",
+            "descripcion" : "Pins oficiales de Super Arigato con diseños originales y exclusivos.",
+            "imagen" : "/img/servicios/pins.jpeg",
+            "handle" : "pins"
+        },
+        {
+            "nombre" : "Stickers",
+            "descripcion" : "Stickers oficiales de Super Arigato con diseños originales y exclusivos.",
+            "imagen" : "/img/servicios/stickers.jpeg",
+            "handle" : "stickers"
+        },
+        {
+            "nombre" : "Llaveros",
+            "descripcion" : "Llaveros oficiales de Super Arigato con diseños originales y exclusivos.",
+            "imagen" : "/img/servicios/llaveros.webp",
+            "handle" : "llaveros"
+        },
+        {
+            "nombre" : "Microfibras",
+            "descripcion" : "Microfibras oficiales de Super Arigato con diseños originales y exclusivos.",
+            "imagen" : "/img/servicios/microfibras.webp",
+            "handle" : "microfibras"
+        },
+        {
+            "nombre" : "Clickers",
+            "descripcion" : "Clickers oficiales de Super Arigato con diseños originales y exclusivos.",
+            "imagen" : "/img/servicios/clickers.webp",
+            "handle" : "clickers"
+        },
+        {
+            "nombre" : "Imanes",
+            "descripcion" : "Imanes oficiales de Super Arigato con diseños originales y exclusivos.",
+            "imagen" : "/img/servicios/imanes.jpeg",
+            "handle" : "imanes"
+        },
+        {
+            "nombre" : "Peluches",
+            "descripcion" : "Peluches oficiales de Super Arigato con diseños originales y exclusivos.",
+            "imagen" : "/img/servicios/peluches.webp",
+            "handle" : "peluches"
+        }
+    ]
+}

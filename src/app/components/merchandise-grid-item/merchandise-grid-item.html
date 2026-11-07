@@ -1,0 +1,13 @@
+<a
+  class="merchandise-grid-item-link"
+  routerLink="/"
+  [queryParams]="{ collectionHandle: handle, titleCollection: title }"
+>
+  <mat-card class="shopy-card merchandise-grid-item" appearance="outlined">
+    <mat-card-content>
+      <img mat-card-image [src]="imageUrl" [alt]="title" />
+      <h2>{{ title }}</h2>
+      <p>{{ description }}</p>
+    </mat-card-content>
+  </mat-card>
+</a>

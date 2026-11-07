@@ -4,14 +4,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { gql } from '@apollo/client';
 import { Apollo } from 'apollo-angular';
-import { map, Observable } from 'rxjs';
+import { EMPTY, expand, map, Observable, reduce } from 'rxjs';
 import { Product } from '../components/product-grid-item/product.model';
 
 //we use the gql tag to parse our query string into a query document
 //lng: this query is important, it the core of the home catalog
 const GET_PRODUCTS = gql`
-  query GetProducts {
-    products(first: 10) {
+  query GetProducts($after: String) {
+    products(first: 250, after: $after) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
       edges {
         node {
           id
@@ -41,13 +45,19 @@ const GET_PRODUCTS = gql`
 `;
 
 const GET_PRODUCTS_BY_TAG = gql`
-  query GetProductsByTag($tag: String!) {
-    products(first: 10, query: $tag) {
+  query GetProductsByTag($tag: String!, $after: String) {
+    products(first: 250, after: $after, query: $tag, sortKey: CREATED_AT, reverse: true) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
       edges {
         node {
           id
           title
           description
+          productType
+          tags
           images(first: 1) {
             edges {
               node {
@@ -99,34 +109,6 @@ const GET_PRODUCT_DETAILS = gql`
   }
 `;
 
-const GET_PRODUCTS_BY_COLLECTION = gql`
-  query {
-  collectionByHandle(handle: "Home page") {
-    title
-    products(first: 250) {
-      edges {
-        node {
-          id
-          title
-          variants(first: 10) {
-            edges {
-              node {
-                price { amount currencyCode }
-              }
-            }
-          }
-        }
-      }
-      pageInfo {
-        hasNextPage
-        endCursor
-      }
-    }
-  }
-}
-`;
-
-
 @Injectable({
   providedIn: 'root',
 })
@@ -136,15 +118,49 @@ export class ShopifyService {
   // Example method to fetch products from Shopify API
   getProducts(collectionHandle: string | null | undefined = undefined): Observable<Product[]> {
     console.log('Fetching products from Shopify API with collection handle:', collectionHandle);
-    return this.apollo.query({
-      query: collectionHandle ? GET_PRODUCTS_BY_TAG : GET_PRODUCTS,
-      variables: {
-        tag: collectionHandle ? `${collectionHandle}` : undefined,
-      },
-    }).pipe(
-      map((result: any) => {
-        console.log('Raw response from Shopify API:', result);
-        return result.data.products.edges.map((edge: any): Product => {
+    const query = collectionHandle ? GET_PRODUCTS_BY_TAG : GET_PRODUCTS;
+    const tag = collectionHandle
+      ? collectionHandle === 'microfibra'
+        ? 'product_type:Microfibra OR (tag:Microfibra -tag:"Mouse Pad" -tag:Portavasos)'
+        : `tag:${collectionHandle}`
+      : undefined;
+    const fetchPage = (after: string | null) => this.apollo.query({
+      query,
+      fetchPolicy: 'network-only',
+      variables: collectionHandle ? { tag, after } : { after },
+    });
+
+    return fetchPage(null).pipe(
+      expand((result: any) => {
+        const pageInfo = result.data.products.pageInfo;
+        return pageInfo.hasNextPage && pageInfo.endCursor
+          ? fetchPage(pageInfo.endCursor)
+          : EMPTY;
+      }),
+      map((result: any) => result.data.products.edges),
+      reduce((allEdges: any[], edges: any[]) => allEdges.concat(edges), []),
+      map((edges: any[]) => {
+        const matchingEdges = collectionHandle
+          ? edges.filter((edge: any) => {
+              const normalizedHandle = collectionHandle.trim().toLowerCase();
+              const tags = edge.node.tags ?? [];
+              const hasExactTag = tags.some(
+                (tag: string) => tag.trim().toLowerCase() === normalizedHandle,
+              );
+
+              if (normalizedHandle === 'microfibra') {
+                const hasOtherCategoryTag = tags.some((tag: string) =>
+                  ['mouse pad', 'portavasos'].includes(tag.trim().toLowerCase()),
+                );
+                return edge.node.productType?.trim().toLowerCase() === 'microfibra' ||
+                  (hasExactTag && !hasOtherCategoryTag);
+              }
+
+              return hasExactTag;
+            })
+          : edges;
+
+        return matchingEdges.map((edge: any): Product => {
           const variantPrice = edge.node.variants?.edges?.[0]?.node?.priceV2;
           return {
             id: edge.node.id,

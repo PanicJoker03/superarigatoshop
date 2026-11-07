@@ -13,6 +13,7 @@ import { MatDivider, MatList, MatListItem, MatNavList } from '@angular/material/
 import { MatMenuItem } from '@angular/material/menu';
 import { SwapDirective } from './shared/swap-directive';
 import { MatIcon } from '@angular/material/icon';
+import { EnvironmentService } from './services/environment-service';
 
 enum DeviceViewMode {
   Mobile = 'mobile',
@@ -48,9 +49,19 @@ export class App {
 
   breakpointObserver = inject(BreakpointObserver);
   router = inject(Router);
+  private environmentService = inject(EnvironmentService);
   deviceViewMode = signal<DeviceViewMode>(<DeviceViewMode>'');
   isReady = signal(false);
   constructor(private chatbot: ChatbotService) {}
+
+  get whatsappContactUrl(): string {
+    const message = 'Hola super arigato, necesito información por favor';
+    return `https://wa.me/${this.environmentService.whatsappPhoneNumber}?text=${encodeURIComponent(message)}`;
+  }
+
+  get facebookPageUrl(): string {
+    return this.environmentService.urlFacecookPage;
+  }
 
   ngOnInit() {
     console.log('App component initialized');
@@ -95,27 +106,14 @@ export class App {
 
   collapseNavigation(){
     this.sidenavOpened.set(false);
-    this.menuSuperArigatoExpanded.set(false);
-    this.menuServiciosExpanded.set(false);
-    this.menuBazarBizarroExpanded.set(false);
+    this.menuPersonajesExpanded.set(false);
     this.menuEnviosExpanded.set(false);
-    this.menuBlogExpanded.set(false);
   }
 
   //#begin: mobile side nav menus
-  menuSuperArigatoExpanded = signal<boolean>(false);
-  toggleMenuSuperArigato(): void {
-    this.menuSuperArigatoExpanded.set(!this.menuSuperArigatoExpanded());
-  }
-
-  menuServiciosExpanded = signal<boolean>(false);
-  toggleMenuServicios(): void {
-    this.menuServiciosExpanded.set(!this.menuServiciosExpanded());
-  }
-
-  menuBazarBizarroExpanded = signal<boolean>(false);
-  toggleMenuBazarBizarro(): void {
-    this.menuBazarBizarroExpanded.set(!this.menuBazarBizarroExpanded());
+  menuPersonajesExpanded = signal<boolean>(false);
+  toggleMenuPersonajes(): void {
+    this.menuPersonajesExpanded.set(!this.menuPersonajesExpanded());
   }
 
   menuEnviosExpanded = signal<boolean>(false);
@@ -123,10 +121,6 @@ export class App {
     this.menuEnviosExpanded.set(!this.menuEnviosExpanded());
   }
 
-  menuBlogExpanded = signal<boolean>(false);
-  toggleMenuBlog(): void {
-    this.menuBlogExpanded.set(!this.menuBlogExpanded());
-  }
   //#end: mobile side nav menus
 
   protected readonly DeviceViewMode = DeviceViewMode;

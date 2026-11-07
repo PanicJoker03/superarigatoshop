@@ -1,0 +1,30 @@
+.services-page {
+  padding: 1rem;
+}
+
+.services-title {
+  margin: 0 0 0 1rem;
+  padding-top: 1rem;
+  font-weight: bold;
+  font-family: 'Inter', sans-serif;
+}
+
+.services-subtitle {
+  margin: 0.25rem 0 0 1rem;
+  color: #33434b;
+  line-height: 1.5;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+@media screen and (max-width: 650px) {
+  .services-grid {
+    display: flex;
+    flex-direction: column;
+  }
+}

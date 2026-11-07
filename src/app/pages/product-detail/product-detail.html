@@ -6,9 +6,26 @@
             <mat-card appearance="outlined">
                 <mat-card-header>
                     <mat-card-title>{{ product()?.title }}</mat-card-title>
-                    <mat-card-subtitle>{{ product()?.description }}</mat-card-subtitle>
                 </mat-card-header>
-                <img mat-card-image [src]="product()?.imageUrl" alt="{{ product()?.title }}" />
+                <div
+                    class="product-description"
+                    tabindex="0"
+                    (click)="openProductDescription($event)"
+                    (keydown.enter)="openProductDescription()"
+                    (keydown.space)="openProductDescription()"
+                >
+                    {{ product()?.description }}
+                </div>
+                <img
+                    mat-card-image
+                    [src]="product()?.imageUrl"
+                    alt="{{ product()?.title }}"
+                    class="product-image"
+                    tabindex="0"
+                    (click)="openProductImage($event)"
+                    (keydown.enter)="openProductImage()"
+                    (keydown.space)="openProductImage()"
+                />
             </mat-card>
         </div>
         <div class="separator"></div>
@@ -22,7 +39,7 @@
                 <mat-button-toggle class="btn-quantity" disabled>Pza</mat-button-toggle>
                 <mat-button-toggle (click)="decreaseQuantity()">-</mat-button-toggle>
             </mat-button-toggle-group>
-            <button mat-raised-button style="background-color: var(--arigato-red); color: white;" (click)="buy()">Comprar</button>
+            <button mat-raised-button class="product-buy-button" style="background-color: var(--arigato-red); color: white;" (click)="buy()">Comprar</button>
             <!-- < -->
         </div>
     }

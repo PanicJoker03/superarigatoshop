@@ -1,0 +1,15 @@
+<main class="merchandise-page">
+  <h1 class="merchandise-title">Merchandise</h1>
+  <p class="merchandise-subtitle">Explora nuestro catálogo oficial 🐱🐾</p>
+
+  <div class="merchandise-grid">
+    @for (item of merchandise; track item.handle) {
+      <app-merchandise-grid-item
+        [handle]="item.handle"
+        [imageUrl]="item.imagen"
+        [title]="item.nombre"
+        [description]="item.descripcion">
+      </app-merchandise-grid-item>
+    }
+  </div>
+</main>

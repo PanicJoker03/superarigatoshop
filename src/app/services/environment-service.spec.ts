@@ -13,4 +13,8 @@ describe('EnvironmentService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should expose the configured WhatsApp phone number', () => {
+    expect(service.whatsappPhoneNumber).toBe('528772017955');
+  });
 });

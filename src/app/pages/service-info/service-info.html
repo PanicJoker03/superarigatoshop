@@ -1,0 +1,33 @@
+<main class="service-info-page">
+  @if (service(); as serviceInfo) {
+    <mat-card class="service-info-card" appearance="outlined">
+      <mat-card-content class="service-info-layout">
+        <img class="service-info-image" [src]="serviceInfo.imagen" [alt]="serviceInfo.nombre" />
+
+        <div class="service-info-content">
+          <p class="service-info-eyebrow">Servicio</p>
+          <h1>{{ serviceInfo.nombre }}</h1>
+          <p class="service-info-description">{{ serviceInfo.descripcion }}</p>
+
+          <div class="service-info-actions">
+            <a
+              mat-raised-button
+              class="request-service-button"
+              [href]="whatsappRequestUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Solicitar servicio
+            </a>
+            <a mat-button routerLink="/pages/services">Regresar</a>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  } @else {
+    <div class="service-info-not-found">
+      <p>No se encontró el servicio solicitado.</p>
+      <a mat-button routerLink="/pages/services">Regresar</a>
+    </div>
+  }
+</main>
